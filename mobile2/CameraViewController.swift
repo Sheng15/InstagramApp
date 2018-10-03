@@ -15,7 +15,7 @@ import ProgressHUD
 class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var ImageData: UIImageView!
-    @IBOutlet weak var rmBT: UIButton!
+    @IBOutlet weak var rmBT: UIBarButtonItem!
     @IBOutlet weak var TextData: UITextView!
     @IBOutlet weak var ShareBT: UIButton!
     var SelectedImage: UIImage?
