@@ -17,11 +17,10 @@
 		F828DD5921523399009F2227 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F828DD5721523399009F2227 /* LaunchScreen.storyboard */; };
 		F828DD6421523399009F2227 /* mobile2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F828DD6321523399009F2227 /* mobile2Tests.swift */; };
 		F828DD6F21523399009F2227 /* mobile2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F828DD6E21523399009F2227 /* mobile2UITests.swift */; };
-		F828DD7D215233F1009F2227 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F828DD7C215233F1009F2227 /* GoogleService-Info.plist */; };
-		F841AA5D21523FF900632211 /* insfake.png in Resources */ = {isa = PBXBuildFile; fileRef = F841AA5C21523FF900632211 /* insfake.png */; };
 		F841AA61215255B700632211 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F841AA60215255B700632211 /* RegisterViewController.swift */; };
 		F843B6542160B822004126FA /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843B6532160B822004126FA /* CameraViewController.swift */; };
-		F843B6582160C299004126FA /* icon0.png in Resources */ = {isa = PBXBuildFile; fileRef = F843B6572160C298004126FA /* icon0.png */; };
+		F844AAF22164978B00C42189 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844AAF12164978B00C42189 /* HomeViewController.swift */; };
+		F8601342216635D500F1AA25 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8601341216635D500F1AA25 /* GoogleService-Info.plist */; };
 		F88BEFA4215797940017F322 /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88BEFA3215797940017F322 /* AvatarViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,11 +64,10 @@
 		F828DD6A21523399009F2227 /* mobile2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mobile2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F828DD6E21523399009F2227 /* mobile2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mobile2UITests.swift; sourceTree = "<group>"; };
 		F828DD7021523399009F2227 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F828DD7C215233F1009F2227 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		F841AA5C21523FF900632211 /* insfake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = insfake.png; sourceTree = "<group>"; };
 		F841AA60215255B700632211 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F843B6532160B822004126FA /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		F843B6572160C298004126FA /* icon0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon0.png; sourceTree = "<group>"; };
+		F844AAF12164978B00C42189 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F8601341216635D500F1AA25 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F88BEFA3215797940017F322 /* AvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,13 +152,12 @@
 				F843B6532160B822004126FA /* CameraViewController.swift */,
 				F841AA60215255B700632211 /* RegisterViewController.swift */,
 				F828DD5221523398009F2227 /* Main.storyboard */,
+				F844AAF12164978B00C42189 /* HomeViewController.swift */,
 				F88BEFA3215797940017F322 /* AvatarViewController.swift */,
 				F828DD5521523399009F2227 /* Assets.xcassets */,
-				F828DD7C215233F1009F2227 /* GoogleService-Info.plist */,
 				F828DD5721523399009F2227 /* LaunchScreen.storyboard */,
+				F8601341216635D500F1AA25 /* GoogleService-Info.plist */,
 				F828DD5A21523399009F2227 /* Info.plist */,
-				F843B6572160C298004126FA /* icon0.png */,
-				F841AA5C21523FF900632211 /* insfake.png */,
 			);
 			path = mobile2;
 			sourceTree = "<group>";
@@ -291,11 +288,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F841AA5D21523FF900632211 /* insfake.png in Resources */,
 				F828DD5921523399009F2227 /* LaunchScreen.storyboard in Resources */,
-				F828DD7D215233F1009F2227 /* GoogleService-Info.plist in Resources */,
-				F843B6582160C299004126FA /* icon0.png in Resources */,
 				F828DD5621523399009F2227 /* Assets.xcassets in Resources */,
+				F8601342216635D500F1AA25 /* GoogleService-Info.plist in Resources */,
 				F828DD5421523398009F2227 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +420,7 @@
 				F828DD5121523398009F2227 /* ViewController.swift in Sources */,
 				F828DD4F21523398009F2227 /* AppDelegate.swift in Sources */,
 				F88BEFA4215797940017F322 /* AvatarViewController.swift in Sources */,
+				F844AAF22164978B00C42189 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
