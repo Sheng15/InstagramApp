@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		15D5E91E5E871288D4BFAD54 /* Pods_mobile2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E927DE9A164FA62D016618F2 /* Pods_mobile2UITests.framework */; };
 		7FFDE24633E1E5141018E661 /* Pods_mobile2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96783EF603DEAC8DB9F28058 /* Pods_mobile2.framework */; };
+		8896B1392166625200E6C3B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8896B1382166625200E6C3B1 /* MainViewController.swift */; };
+		8896B13B2166647900E6C3B1 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8896B13A2166647900E6C3B1 /* PostTableViewCell.swift */; };
 		A2D1198069BA00826251811F /* Pods_mobile2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EFFD706B127BB2289E3699 /* Pods_mobile2Tests.framework */; };
 		F828DD4F21523398009F2227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F828DD4E21523398009F2227 /* AppDelegate.swift */; };
 		F828DD5121523398009F2227 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F828DD5021523398009F2227 /* ViewController.swift */; };
@@ -46,6 +48,8 @@
 		2C0C4776B72A360F66179D88 /* Pods-mobile2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile2.release.xcconfig"; path = "Pods/Target Support Files/Pods-mobile2/Pods-mobile2.release.xcconfig"; sourceTree = "<group>"; };
 		69EEA5914EA35F6A5D414968 /* Pods-mobile2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mobile2Tests/Pods-mobile2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		7B38FFF5ED6DEFC419561EAA /* Pods-mobile2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-mobile2UITests/Pods-mobile2UITests.release.xcconfig"; sourceTree = "<group>"; };
+		8896B1382166625200E6C3B1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		8896B13A2166647900E6C3B1 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		96783EF603DEAC8DB9F28058 /* Pods_mobile2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mobile2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A0793BBA749B58C3008782 /* Pods-mobile2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-mobile2Tests/Pods-mobile2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B6EFFD706B127BB2289E3699 /* Pods_mobile2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mobile2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +151,7 @@
 		F828DD4D21523398009F2227 /* mobile2 */ = {
 			isa = PBXGroup;
 			children = (
+				8896B13A2166647900E6C3B1 /* PostTableViewCell.swift */,
 				F828DD4E21523398009F2227 /* AppDelegate.swift */,
 				F828DD5021523398009F2227 /* ViewController.swift */,
 				F843B6532160B822004126FA /* CameraViewController.swift */,
@@ -158,6 +163,7 @@
 				F828DD5721523399009F2227 /* LaunchScreen.storyboard */,
 				F8601341216635D500F1AA25 /* GoogleService-Info.plist */,
 				F828DD5A21523399009F2227 /* Info.plist */,
+				8896B1382166625200E6C3B1 /* MainViewController.swift */,
 			);
 			path = mobile2;
 			sourceTree = "<group>";
@@ -415,8 +421,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8896B1392166625200E6C3B1 /* MainViewController.swift in Sources */,
 				F841AA61215255B700632211 /* RegisterViewController.swift in Sources */,
 				F843B6542160B822004126FA /* CameraViewController.swift in Sources */,
+				8896B13B2166647900E6C3B1 /* PostTableViewCell.swift in Sources */,
 				F828DD5121523398009F2227 /* ViewController.swift in Sources */,
 				F828DD4F21523398009F2227 /* AppDelegate.swift in Sources */,
 				F88BEFA4215797940017F322 /* AvatarViewController.swift in Sources */,
