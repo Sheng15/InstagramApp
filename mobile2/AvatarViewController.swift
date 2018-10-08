@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 class AvatarViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
 
     @IBOutlet weak var Avatars: UIImageView!
     override func viewDidLoad() {
