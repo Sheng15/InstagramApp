@@ -78,7 +78,7 @@ class RegisterViewController: UIViewController, UITextViewDelegate {
                                 let ref = Database.database().reference()
                                 let usersReference = ref.child("users")
                                 let newUsersReference = usersReference.child(self.uuid!)
-                                newUsersReference.setValue(["username": accname_r,"email": username_r, "profile_image": url!])
+                                newUsersReference.setValue(["uid": self.uuid,"username": accname_r,"email": username_r, "profile_image": url!])
                                 ProgressHUD.showSuccess("Success!")
                                 let avt = self.storyboard?.instantiateViewController(withIdentifier: "ss")
                                 self.present(avt!, animated: true, completion: nil)

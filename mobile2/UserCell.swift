@@ -1,0 +1,9 @@
+//
+//  UserCell.swift
+//  mobile2
+//
+//  Created by LudwiG on 2018/10/9.
+//  Copyright © 2018年 LudwiG. All rights reserved.
+//
+
+import Foundation
