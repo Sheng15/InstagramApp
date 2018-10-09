@@ -81,10 +81,4 @@ class AvatarViewController: UIViewController, UIImagePickerControllerDelegate, U
         picker.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func addBT(_ sender: Any) {
-        
-        let avt = self.storyboard?.instantiateViewController(withIdentifier: "ou")
-        self.present(avt!, animated: true, completion: nil)
-    }
-    
 }
