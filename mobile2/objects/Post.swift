@@ -14,6 +14,7 @@ class Post: NSObject {
     var likes: Int!
     var photoUrl: String!
     var text: String!
-    var uid: String!
+    var userID: String!
+    var postID: String!
     
 }
