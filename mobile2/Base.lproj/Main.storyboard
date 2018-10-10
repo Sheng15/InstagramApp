@@ -471,8 +471,9 @@
                                                     <rect key="frame" x="15" y="39.5" width="345" height="210"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqv-AW-6JN">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqv-AW-6JN">
                                                     <rect key="frame" x="0.0" y="270" width="375" height="52"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -485,50 +486,40 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abf-Wc-Pz9">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abf-Wc-Pz9">
                                                     <rect key="frame" x="45" y="330" width="31" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="likeBtn" image="like"/>
                                                     <connections>
                                                         <action selector="likeProcessed:" destination="vCO-rq-cOZ" eventType="touchUpInside" id="4pp-fb-BeL"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96O-e6-xcD">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96O-e6-xcD">
                                                     <rect key="frame" x="45" y="330" width="31" height="31"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="31" id="Qca-Eq-5b2"/>
-                                                    </constraints>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="unlikeBtn" image="unlike"/>
                                                     <connections>
                                                         <action selector="unlikeProcessed:" destination="vCO-rq-cOZ" eventType="touchUpInside" id="J83-Dw-889"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pa-GI-LoM">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pa-GI-LoM">
                                                     <rect key="frame" x="93" y="330" width="31" height="31"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="31" id="W5e-Ga-fb8"/>
-                                                    </constraints>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="commentBtn" image="comment"/>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="100 likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkW-MC-xhZ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100 likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkW-MC-xhZ">
                                                     <rect key="frame" x="45" y="391" width="57" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IT7-jy-9o3">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IT7-jy-9o3">
                                                     <rect key="frame" x="15" y="369" width="345" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="hkW-MC-xhZ" firstAttribute="top" secondItem="IT7-jy-9o3" secondAttribute="bottom" constant="2" id="4NO-9Y-31b"/>
-                                                <constraint firstItem="9pa-GI-LoM" firstAttribute="leading" secondItem="Abf-Wc-Pz9" secondAttribute="trailing" constant="17" id="4Nu-lN-KB0"/>
-                                                <constraint firstItem="IT7-jy-9o3" firstAttribute="top" secondItem="96O-e6-xcD" secondAttribute="bottom" id="L1s-LA-Vi3"/>
-                                                <constraint firstItem="hkW-MC-xhZ" firstAttribute="leading" secondItem="96O-e6-xcD" secondAttribute="trailing" constant="-31" id="cYO-IT-NSI"/>
-                                                <constraint firstItem="9pa-GI-LoM" firstAttribute="top" secondItem="dqv-AW-6JN" secondAttribute="bottom" constant="8" id="lHY-Ew-gdg"/>
-                                                <constraint firstItem="hkW-MC-xhZ" firstAttribute="leading" secondItem="nid-Fg-9K4" secondAttribute="leadingMargin" constant="30" id="vuI-Oc-9kQ"/>
-                                                <constraint firstItem="9pa-GI-LoM" firstAttribute="leading" secondItem="96O-e6-xcD" secondAttribute="trailing" constant="17" id="zFG-Bu-eGC"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="commentBtn" destination="9pa-GI-LoM" id="T3M-35-HR3"/>
