@@ -13,6 +13,18 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var contentTextView: UITextView!
+    @IBOutlet weak var likeLabel: UILabel!
+   
+    
+    @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet weak var unlikeBtn: UIButton!
+    @IBOutlet weak var commentBtn: UIButton!
+    
+    @IBAction func likeProcessed(_ sender: Any) {
+    }
+    @IBAction func unlikeProcessed(_ sender: Any) {
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
