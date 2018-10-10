@@ -36,9 +36,9 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         Database.database().reference().child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
             if let postsDictionary = snapshot.value as? [String: AnyObject]{
                 for post in postsDictionary{
-                    print("==========================")
-                    //                    print(post)
-                    print("==========================")
+//                    print("==========================")
+//                    print(post)
+//                    print("==========================")
                     
                     self.posts.add(post.value)
                 }
@@ -62,12 +62,13 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PostTableViewCell
-       
-
         
-        // Configure the cell...
+        // creating the cell...
+        
         let post = self.posts[indexPath.row] as! [String: AnyObject]
+        
         cell.contentTextView.text = post["text"] as?  String
+        cell.titleLabel.text = post["author"] as? String 
         print("//////////////")
         if let urlString = post["photoUrl"] as? String{
             if let url = NSURL(string: urlString){

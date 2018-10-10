@@ -161,11 +161,13 @@ class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerC
 //
 //        })
         
-        newPostReferrence.setValue(["photoUrl": photoUrl,
-                                    "text": TextData.text!,
-                                    "uid" : uid!,
-                                    "likes" : 0,
-                                    "author": self.currentUserName
+        newPostReferrence.setValue([
+            "photoUrl": photoUrl,
+            "text": TextData.text!,
+            "postID" : newPostID!,
+            "userID" : uid!,
+            "likes" : 0,
+            "author": self.currentUserName!
             ], withCompletionBlock: {
             (error, ref) in
             if error != nil{
