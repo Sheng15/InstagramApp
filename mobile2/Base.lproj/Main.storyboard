@@ -411,33 +411,6 @@
             </objects>
             <point key="canvasLocation" x="5052" y="-1930.8845577211396"/>
         </scene>
-        <!--Discover-->
-        <scene sceneID="D70-Hv-aav">
-            <objects>
-                <viewController id="HVr-0P-uuB" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="n97-pP-GKr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Discover" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6h3-2g-NUz">
-                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="shadowColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="qS0-yc-QAQ"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Discover" image="discover" id="BNF-o9-bof"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ehq-SW-PCg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2325" y="171"/>
-        </scene>
         <!--Home-->
         <scene sceneID="Je4-gJ-a0x">
             <objects>
@@ -557,10 +530,10 @@
                     </tabBar>
                     <connections>
                         <segue destination="lq3-Qv-H9z" kind="relationship" relationship="viewControllers" id="5lE-mV-YvF"/>
-                        <segue destination="HVr-0P-uuB" kind="relationship" relationship="viewControllers" id="fuf-Eh-SnH"/>
                         <segue destination="0aF-OP-rje" kind="relationship" relationship="viewControllers" id="Tc8-U0-2i0"/>
                         <segue destination="c2F-Yl-iXy" kind="relationship" relationship="viewControllers" id="IjN-k9-Wtl"/>
                         <segue destination="b17-hu-gQ3" kind="relationship" relationship="viewControllers" id="ubm-fW-pSr"/>
+                        <segue destination="LMl-lY-x1w" kind="relationship" relationship="viewControllers" id="wVt-2e-OZd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4kh-TK-pVM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -685,6 +658,52 @@
             </objects>
             <point key="canvasLocation" x="2324" y="-493.40329835082463"/>
         </scene>
+        <!--Discover View Controller-->
+        <scene sceneID="HyV-WK-HuN">
+            <objects>
+                <tableViewController id="9ZN-nF-BNJ" customClass="DiscoverViewController" customModule="mobile2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SI2-UC-oSU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="hHq-FJ-qUn">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hHq-FJ-qUn" id="95A-kN-fZH">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9ZN-nF-BNJ" id="OO0-qv-9eJ"/>
+                            <outlet property="delegate" destination="9ZN-nF-BNJ" id="qO7-Vs-Pz1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="uHV-Bo-b7M"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yMy-tG-myv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3263" y="186"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="Ggw-Jx-ddc">
+            <objects>
+                <navigationController id="LMl-lY-x1w" customClass="NavigationViewController" customModule="mobile2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Discover" image="discover" id="oHQ-4d-SEq"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iUS-ly-M1I">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9ZN-nF-BNJ" kind="relationship" relationship="rootViewController" id="2da-IS-0fB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I00-aA-oex" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2316" y="186"/>
+        </scene>
         <!--Upload-->
         <scene sceneID="XkH-KB-7cR">
             <objects>
@@ -734,7 +753,7 @@
         <image name="add" width="22" height="22"/>
         <image name="comment" width="43" height="41"/>
         <image name="discover" width="25" height="25"/>
-        <image name="insfake" width="1065" height="420"/>
+        <image name="insfake" width="2130" height="840"/>
         <image name="like" width="46" height="41"/>
         <image name="placeholder-photo" width="840" height="600"/>
         <image name="placeholderImg" width="225" height="225"/>
