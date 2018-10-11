@@ -75,6 +75,12 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                 posttt.userID = userID
                                                 posttt.postID = postID
                                                 
+                                                if let people = post["peopleWhoLike"] as? [String : AnyObject]{
+                                                    for (_,person) in people {
+                                                        posttt.peopleWhoLike.append(person as! String)
+                                                    }
+                                                }
+                                                
                                                 self.posts.append(posttt)
                                             }
                                         }
@@ -131,8 +137,15 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell.titleLabel.text = self.posts[indexPath.row].author
         cell.likeLabel.text = "\(self.posts[indexPath.row].likes!) likes"
         cell.contentTextView.text = self.posts[indexPath.row].text
+        cell.postID = self.posts[indexPath.row].postID
         
-        
+        for person in self.posts[indexPath.row].peopleWhoLike{
+            if person == Auth.auth().currentUser?.uid{
+                cell.likeBtn.isHidden = true
+                cell.unlikeBtn.isHidden = false
+                break
+            }
+        }
         
         return cell
     }
