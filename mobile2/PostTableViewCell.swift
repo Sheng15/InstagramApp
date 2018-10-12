@@ -31,7 +31,7 @@ class PostTableViewCell: UITableViewCell {
         let key2Post = ref.child("posts").childByAutoId().key
         ref.child("posts").child(self.postID).observeSingleEvent(of: .value, with: { (snapshot) in
             if let post = snapshot.value as? [String: AnyObject]{
-                let updateLike: [String : Any] = ["peopleWhoLike/\(key2Post)":Auth.auth().currentUser!.uid]
+                let updateLike: [String : Any] = ["peopleWhoLike/\(key2Post)":Auth.auth().currentUser!.displayName]
                 ref.child("posts").child(self.postID).updateChildValues(updateLike, withCompletionBlock: { (error, reference) in
                     if error == nil{
                         ref.child("posts").child(self.postID).observeSingleEvent(of: .value, with: { (snap) in
@@ -65,7 +65,7 @@ class PostTableViewCell: UITableViewCell {
             if let properties = snapshot.value as? [String : AnyObject] {
                 if let peopleWhoLike = properties["peopleWhoLike"] as? [String : AnyObject]{
                     for (id, person) in peopleWhoLike{
-                        if person as? String == Auth.auth().currentUser!.uid{
+                        if person as? String == Auth.auth().currentUser!.displayName{
                             ref.child("posts").child(self.postID).child("peopleWhoLike").child(id).removeValue(completionBlock: { (error, reff) in
                                 if error == nil {
                                     ref.child("posts").child(self.postID).observeSingleEvent(of: .value, with: { (snap) in
@@ -73,9 +73,9 @@ class PostTableViewCell: UITableViewCell {
                                             if let likes = prop["peopleWhoLike"] as? [String : AnyObject]{
                                                 let count = likes.count
                                                 self.likeLabel.text = "\(count) likes"
-                                                let update = ["likes": count]
+//                                                let update = ["likes": count]
 
-                                                ref.child("posts").child(self.postID).updateChildValues(["likes" : update])
+                                                ref.child("posts").child(self.postID).updateChildValues(["likes" : count])
                                             }else{
                                                 self.likeLabel.text = "0 likes"
                                                 ref.child("posts").child(self.postID).updateChildValues(["likes" : 0])

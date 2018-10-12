@@ -95,6 +95,10 @@ class RegisterViewController: UIViewController, UITextViewDelegate {
                 return
             }
         }
+        let changeRequest = Auth.auth().currentUser!.createProfileChangeRequest()
+        changeRequest.displayName = accname_r
+        changeRequest.commitChanges(completion: nil)
+        print("displayname设置好了！！！！！！！！！！！！！！！！！！！")
     }
     
     @objc func handlePhoto() {

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		15D5E91E5E871288D4BFAD54 /* Pods_mobile2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E927DE9A164FA62D016618F2 /* Pods_mobile2UITests.framework */; };
 		7FFDE24633E1E5141018E661 /* Pods_mobile2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96783EF603DEAC8DB9F28058 /* Pods_mobile2.framework */; };
-		881C2601216EEBF60052D115 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 881C2600216EEBF60052D115 /* GoogleService-Info.plist */; };
+		88759D9B2170D06B007FBF7B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88759D9A2170D06A007FBF7B /* GoogleService-Info.plist */; };
 		888FB542216E50E500EF40BC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888FB541216E50E500EF40BC /* Post.swift */; };
 		8896B1392166625200E6C3B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8896B1382166625200E6C3B1 /* MainViewController.swift */; };
 		8896B13B2166647900E6C3B1 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8896B13A2166647900E6C3B1 /* PostTableViewCell.swift */; };
@@ -53,7 +53,7 @@
 		2C0C4776B72A360F66179D88 /* Pods-mobile2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile2.release.xcconfig"; path = "Pods/Target Support Files/Pods-mobile2/Pods-mobile2.release.xcconfig"; sourceTree = "<group>"; };
 		69EEA5914EA35F6A5D414968 /* Pods-mobile2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mobile2Tests/Pods-mobile2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		7B38FFF5ED6DEFC419561EAA /* Pods-mobile2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-mobile2UITests/Pods-mobile2UITests.release.xcconfig"; sourceTree = "<group>"; };
-		881C2600216EEBF60052D115 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		88759D9A2170D06A007FBF7B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		888FB541216E50E500EF40BC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		8896B1382166625200E6C3B1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8896B13A2166647900E6C3B1 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -167,10 +167,10 @@
 				F828DD5021523398009F2227 /* ViewController.swift */,
 				F843B6532160B822004126FA /* CameraViewController.swift */,
 				F841AA60215255B700632211 /* RegisterViewController.swift */,
-				881C2600216EEBF60052D115 /* GoogleService-Info.plist */,
 				F828DD5221523398009F2227 /* Main.storyboard */,
 				F860134B216C5F5E00F1AA25 /* AddTableViewController.swift */,
 				F88BEFA3215797940017F322 /* AvatarViewController.swift */,
+				88759D9A2170D06A007FBF7B /* GoogleService-Info.plist */,
 				F860134F216C60EF00F1AA25 /* UserCell.swift */,
 				F828DD5521523399009F2227 /* Assets.xcassets */,
 				F828DD5721523399009F2227 /* LaunchScreen.storyboard */,
@@ -318,7 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F828DD5921523399009F2227 /* LaunchScreen.storyboard in Resources */,
-				881C2601216EEBF60052D115 /* GoogleService-Info.plist in Resources */,
+				88759D9B2170D06B007FBF7B /* GoogleService-Info.plist in Resources */,
 				F828DD5621523399009F2227 /* Assets.xcassets in Resources */,
 				F828DD5421523398009F2227 /* Main.storyboard in Resources */,
 			);
