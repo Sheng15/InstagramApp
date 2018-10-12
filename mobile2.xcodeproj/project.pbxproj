@@ -27,7 +27,7 @@
 		F860135D21707AA500F1AA25 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860135C21707AA500F1AA25 /* PostCell.swift */; };
 		F860135F2170B07600F1AA25 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860135E2170B07500F1AA25 /* UserCell.swift */; };
 		F86013612170B0A800F1AA25 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86013602170B0A800F1AA25 /* ProfileViewController.swift */; };
-		F8601367217101C100F1AA25 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8601366217101C100F1AA25 /* GoogleService-Info.plist */; };
+		F86013692171035400F1AA25 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F86013682171035400F1AA25 /* GoogleService-Info.plist */; };
 		F88BEFA4215797940017F322 /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88BEFA3215797940017F322 /* AvatarViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,7 +81,7 @@
 		F860135C21707AA500F1AA25 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		F860135E2170B07500F1AA25 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		F86013602170B0A800F1AA25 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		F8601366217101C100F1AA25 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F86013682171035400F1AA25 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F88BEFA3215797940017F322 /* AvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,23 +161,15 @@
 		F828DD4D21523398009F2227 /* mobile2 */ = {
 			isa = PBXGroup;
 			children = (
+				F860136F217105CB00F1AA25 /* ViewControllers */,
+				F860136E217105A800F1AA25 /* storyboard */,
+				F860136D2171051500F1AA25 /* cells */,
 				F8601351216C679800F1AA25 /* objects */,
-				8896B13A2166647900E6C3B1 /* PostTableViewCell.swift */,
 				F828DD4E21523398009F2227 /* AppDelegate.swift */,
-				F828DD5021523398009F2227 /* ViewController.swift */,
-				F843B6532160B822004126FA /* CameraViewController.swift */,
-				F841AA60215255B700632211 /* RegisterViewController.swift */,
-				F828DD5221523398009F2227 /* Main.storyboard */,
-				F860134B216C5F5E00F1AA25 /* AddTableViewController.swift */,
-				F88BEFA3215797940017F322 /* AvatarViewController.swift */,
-				F86013602170B0A800F1AA25 /* ProfileViewController.swift */,
-				F860135E2170B07500F1AA25 /* UserCell.swift */,
-				F860135C21707AA500F1AA25 /* PostCell.swift */,
 				F828DD5521523399009F2227 /* Assets.xcassets */,
 				F828DD5721523399009F2227 /* LaunchScreen.storyboard */,
-				F8601366217101C100F1AA25 /* GoogleService-Info.plist */,
+				F86013682171035400F1AA25 /* GoogleService-Info.plist */,
 				F828DD5A21523399009F2227 /* Info.plist */,
-				8896B1382166625200E6C3B1 /* MainViewController.swift */,
 			);
 			path = mobile2;
 			sourceTree = "<group>";
@@ -207,6 +199,38 @@
 				F8601352216C67D300F1AA25 /* User.swift */,
 			);
 			path = objects;
+			sourceTree = "<group>";
+		};
+		F860136D2171051500F1AA25 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				8896B13A2166647900E6C3B1 /* PostTableViewCell.swift */,
+				F860135E2170B07500F1AA25 /* UserCell.swift */,
+				F860135C21707AA500F1AA25 /* PostCell.swift */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		F860136E217105A800F1AA25 /* storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				F828DD5221523398009F2227 /* Main.storyboard */,
+			);
+			path = storyboard;
+			sourceTree = "<group>";
+		};
+		F860136F217105CB00F1AA25 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8896B1382166625200E6C3B1 /* MainViewController.swift */,
+				F828DD5021523398009F2227 /* ViewController.swift */,
+				F843B6532160B822004126FA /* CameraViewController.swift */,
+				F841AA60215255B700632211 /* RegisterViewController.swift */,
+				F860134B216C5F5E00F1AA25 /* AddTableViewController.swift */,
+				F88BEFA3215797940017F322 /* AvatarViewController.swift */,
+				F86013602170B0A800F1AA25 /* ProfileViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,7 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F828DD5921523399009F2227 /* LaunchScreen.storyboard in Resources */,
-				F8601367217101C100F1AA25 /* GoogleService-Info.plist in Resources */,
+				F86013692171035400F1AA25 /* GoogleService-Info.plist in Resources */,
 				F828DD5621523399009F2227 /* Assets.xcassets in Resources */,
 				F828DD5421523398009F2227 /* Main.storyboard in Resources */,
 			);

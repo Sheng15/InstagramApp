@@ -7,9 +7,7 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
-import FirebaseStorage
+import Firebase
 import ProgressHUD
 
 class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {

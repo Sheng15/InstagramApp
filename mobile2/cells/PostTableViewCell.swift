@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
 
 class PostTableViewCell: UITableViewCell {
 
@@ -27,7 +26,7 @@ class PostTableViewCell: UITableViewCell {
         let ref = Database.database().reference()
         let key2Post = ref.child("posts").childByAutoId().key
         ref.child("posts").child(self.postID).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let post = snapshot.value as? [String: AnyObject]{
+            if (snapshot.value as? [String: AnyObject]) != nil{
                 let updateLike: [String : Any] = ["peopleWhoLike/\(key2Post)":Auth.auth().currentUser!.uid]
                 ref.child("posts").child(self.postID).updateChildValues(updateLike, withCompletionBlock: { (error, reference) in
                     if error == nil{
