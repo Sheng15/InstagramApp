@@ -12,7 +12,7 @@ import ProgressHUD
 
 class AvatarViewController: UIViewController {
     
-
+    
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var accname: UILabel!
     

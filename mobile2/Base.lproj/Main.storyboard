@@ -265,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJ1-4X-hV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="778" y="-13"/>
+            <point key="canvasLocation" x="692" y="-13.043478260869566"/>
         </scene>
         <!--Profile-->
         <scene sceneID="xW8-3M-08A">
@@ -643,43 +643,75 @@
                                 <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="shadowColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="436" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y7Z-ut-p9S">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="489" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y7Z-ut-p9S">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="vCO-rq-cOZ" customClass="PostTableViewCell" customModule="mobile2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="436"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="489" id="vCO-rq-cOZ" customClass="PostTableViewCell" customModule="mobile2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="489"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vCO-rq-cOZ" id="nid-Fg-9K4">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="435.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="488.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q7i-gC-z4X">
-                                                    <rect key="frame" x="67" y="95" width="240" height="128"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q7i-gC-z4X">
+                                                    <rect key="frame" x="0.0" y="29" width="375" height="288"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="userName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJN-hu-ucM">
-                                                    <rect key="frame" x="67" y="54" width="107" height="33"/>
+                                                    <rect key="frame" x="48" y="0.0" width="107" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqv-AW-6JN">
-                                                    <rect key="frame" x="67" y="249" width="240" height="128"/>
+                                                    <rect key="frame" x="0.0" y="325" width="375" height="48"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100 likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0g-M3-fm4">
+                                                    <rect key="frame" x="15" y="416" width="67" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WES-Hm-wVB">
+                                                    <rect key="frame" x="15" y="381" width="34" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="like" image="like"/>
+                                                    <connections>
+                                                        <action selector="likeProcessed:" destination="vCO-rq-cOZ" eventType="touchUpInside" id="cPG-wP-Nxp"/>
+                                                    </connections>
+                                                </button>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnP-mK-xG4">
+                                                    <rect key="frame" x="15" y="381" width="34" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="unlike" image="unlike"/>
+                                                    <connections>
+                                                        <action selector="unlikeProcessed:" destination="vCO-rq-cOZ" eventType="touchUpInside" id="uXm-Wm-wOL"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ov-59-c1m">
+                                                    <rect key="frame" x="70" y="381" width="34" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="comment" image="comment"/>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="commentBtn" destination="8Ov-59-c1m" id="uJi-RK-B8m"/>
                                             <outlet property="contentTextView" destination="dqv-AW-6JN" id="TTe-Sr-XZR"/>
+                                            <outlet property="likeBtn" destination="WES-Hm-wVB" id="MNr-Zp-5Fu"/>
+                                            <outlet property="likeLabel" destination="g0g-M3-fm4" id="YHq-jY-2eZ"/>
                                             <outlet property="postImageView" destination="q7i-gC-z4X" id="NcX-bF-wmx"/>
                                             <outlet property="titleLabel" destination="LJN-hu-ucM" id="iXR-Yp-JXT"/>
+                                            <outlet property="unlikeBtn" destination="rnP-mK-xG4" id="WcS-uP-LKb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -883,16 +915,14 @@
         <image name="Photo" width="22" height="23"/>
         <image name="activity feed" width="25" height="25"/>
         <image name="add" width="22" height="22"/>
+        <image name="comment" width="43" height="41"/>
         <image name="discover" width="25" height="25"/>
-<<<<<<< HEAD
         <image name="insfake" width="1065" height="420"/>
         <image name="like" width="46" height="41"/>
-=======
-        <image name="insfake" width="2130" height="840"/>
->>>>>>> 4f242a50d5bfb647639d0377455c657126574478
         <image name="placeholder-photo" width="840" height="600"/>
         <image name="placeholderImg" width="225" height="225"/>
         <image name="profile" width="25" height="25"/>
+        <image name="unlike" width="46" height="41"/>
         <image name="user feed" width="25" height="25"/>
     </resources>
 </document>

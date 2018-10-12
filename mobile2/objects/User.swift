@@ -12,4 +12,8 @@ class User: NSObject {
     var userID: String!
     var accName: String!
     var profileUrl: String!
+    
+    
+    
+    
 }

@@ -43,6 +43,13 @@ class ViewController: UIViewController {
                 ProgressHUD.showSuccess("Success")
                 let avt = self.storyboard?.instantiateViewController(withIdentifier: "h1")
                 self.present(avt!, animated: true, completion: nil)
+                
+//                let changeRequest = Auth.auth().currentUser!.createProfileChangeRequest()
+//                changeRequest.displayName = self.accName.text
+//                changeRequest.commitChanges(completion: nil)
+//                print("displayname设置好了！！！！！！！！！！！！！！！！！！！")
+                
+                
             }
         }
     }

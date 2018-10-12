@@ -19,6 +19,46 @@ class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerC
     @IBOutlet weak var TextData: UITextView!
     @IBOutlet weak var ShareBT: UIButton!
     var SelectedImage: UIImage?
+    var currentUserName: String?
+
+    
+    func tony(){
+        if Auth.auth().currentUser?.uid != nil{
+            
+            let uid = Auth.auth().currentUser?.uid
+            let ref = Database.database().reference()
+            ref.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let dictionary = snapshot.value as? [String: AnyObject]{
+                    //                self.currentUserName = (dictionary["username"] as? String)!
+                    let fix: String? = dictionary["username"] as? String
+                    print("测试1111111")
+                    
+                    print(fix!)
+                    self.currentUserName = fix!
+                    print(self.currentUserName!)
+                    //                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                    //                changeRequest?.displayName = fix
+                    //                changeRequest?.commitChanges(completion: { (error) in
+                    //                    if let error = error{
+                    //                        print(error.localizedDescription)
+                    //                    }
+                    //
+                    //                })
+                    //                print(Auth.auth().currentUser!.displayName! )
+                    
+                }
+                print("测试1")
+                print(self.currentUserName!)
+                self.ShareBT.isUserInteractionEnabled = true
+            }, withCancel: nil)
+            
+            //        print("测试2")
+            //        print(self.currentUserName )
+            
+            
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -32,6 +72,8 @@ class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerC
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handlePhoto))
         ImageData.addGestureRecognizer(tapGesture)
         ImageData.isUserInteractionEnabled = true
+        ShareBT.isUserInteractionEnabled = false
+        tony()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,20 +145,41 @@ class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerC
     
     func send2Database(photoUrl: String){
         
+        
+        let uid = Auth.auth().currentUser?.uid
+        
         let ref = Database.database().reference()
         let postReferrence = ref.child("posts")
         let newPostID = postReferrence.childByAutoId().key
         let newPostReferrence = postReferrence.child(newPostID!)
-        newPostReferrence.setValue(["photoUrl": photoUrl,"text": TextData.text!], withCompletionBlock: {
-            (error, ref) in
-            if error != nil{
-                ProgressHUD.showError(error?.localizedDescription)
-                return
-            }
-            ProgressHUD.showSuccess("Success!")
-            self.TextData.text = ""
-            self.ImageData.image = UIImage(named: "icon0.png")
-            self.SelectedImage = nil
+        //        ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: {snapshot in
+        //            let key = snapshot.key as! string
+        //            for (key, value) in users{
+        //           ÷     let nowUser = User()
+        //                if let accName = key["username"] as? String{
+        //                    self.currentUserName = (snapshot.value as! String)
+        //                }
+        //            }
+        //
+        //        })
+        
+        newPostReferrence.setValue([
+            "photoUrl": photoUrl,
+            "text": TextData.text!,
+            "postID" : newPostID!,
+            "userID" : uid!,
+            "likes" : 0,
+            "author": self.currentUserName!
+            ], withCompletionBlock: {
+                (error, ref) in
+                if error != nil{
+                    ProgressHUD.showError(error?.localizedDescription)
+                    return
+                }
+                ProgressHUD.showSuccess("Success!")
+                self.TextData.text = ""
+                self.ImageData.image = UIImage(named: "icon0.png")
+                self.SelectedImage = nil
         })
     }
     

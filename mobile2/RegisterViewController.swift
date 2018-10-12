@@ -35,7 +35,13 @@ class RegisterViewController: UIViewController, UITextViewDelegate {
         avatar.clipsToBounds = true
 
         // Do any additional setup after loading the view.
+        
+               
+        
     }
+    
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
@@ -91,10 +97,7 @@ class RegisterViewController: UIViewController, UITextViewDelegate {
                 return
             }
         }
-        let changeRequest = Auth.auth().currentUser!.createProfileChangeRequest()
-        changeRequest.displayName = accname_r
-        changeRequest.commitChanges(completion: nil)
-        print("displayname设置好了！！！！！！！！！！！！！！！！！！！")
+
     }
     
     @objc func handlePhoto() {

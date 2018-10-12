@@ -7,21 +7,19 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class PostTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var contentTextView: UITextView!
-<<<<<<< HEAD
     @IBOutlet weak var likeLabel: UILabel!
-   
     
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var unlikeBtn: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
-    
-    
     
     var postID: String!
     @IBAction func likeProcessed(_ sender: Any) {
@@ -30,7 +28,7 @@ class PostTableViewCell: UITableViewCell {
         let key2Post = ref.child("posts").childByAutoId().key
         ref.child("posts").child(self.postID).observeSingleEvent(of: .value, with: { (snapshot) in
             if let post = snapshot.value as? [String: AnyObject]{
-                let updateLike: [String : Any] = ["peopleWhoLike/\(key2Post)":Auth.auth().currentUser!.displayName]
+                let updateLike: [String : Any] = ["peopleWhoLike/\(key2Post)":Auth.auth().currentUser!.uid]
                 ref.child("posts").child(self.postID).updateChildValues(updateLike, withCompletionBlock: { (error, reference) in
                     if error == nil{
                         ref.child("posts").child(self.postID).observeSingleEvent(of: .value, with: { (snap) in
@@ -55,8 +53,6 @@ class PostTableViewCell: UITableViewCell {
         ref.removeAllObservers()
     }
     
-    
-    
     @IBAction func unlikeProcessed(_ sender: Any) {
         self.unlikeBtn.isEnabled = false
         let ref = Database.database().reference()
@@ -64,7 +60,7 @@ class PostTableViewCell: UITableViewCell {
             if let properties = snapshot.value as? [String : AnyObject] {
                 if let peopleWhoLike = properties["peopleWhoLike"] as? [String : AnyObject]{
                     for (id, person) in peopleWhoLike{
-                        if person as? String == Auth.auth().currentUser!.displayName{
+                        if person as? String == Auth.auth().currentUser!.uid{
                             ref.child("posts").child(self.postID).child("peopleWhoLike").child(id).removeValue(completionBlock: { (error, reff) in
                                 if error == nil {
                                     ref.child("posts").child(self.postID).observeSingleEvent(of: .value, with: { (snap) in
@@ -72,13 +68,13 @@ class PostTableViewCell: UITableViewCell {
                                             if let likes = prop["peopleWhoLike"] as? [String : AnyObject]{
                                                 let count = likes.count
                                                 self.likeLabel.text = "\(count) likes"
-//                                                let update = ["likes": count]
-
+                                                //                                                let update = ["likes": count]
+                                                
                                                 ref.child("posts").child(self.postID).updateChildValues(["likes" : count])
                                             }else{
                                                 self.likeLabel.text = "0 likes"
                                                 ref.child("posts").child(self.postID).updateChildValues(["likes" : 0])
-
+                                                
                                             }
                                         }
                                     })
@@ -88,7 +84,7 @@ class PostTableViewCell: UITableViewCell {
                             self.likeBtn.isHidden = false
                             self.unlikeBtn.isHidden = true
                             self.unlikeBtn.isEnabled = true
-
+                            
                             break
                         }
                     }
@@ -98,8 +94,6 @@ class PostTableViewCell: UITableViewCell {
         ref.removeAllObservers()
     }
     
-=======
->>>>>>> 4f242a50d5bfb647639d0377455c657126574478
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
