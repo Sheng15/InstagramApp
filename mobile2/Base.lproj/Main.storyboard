@@ -493,7 +493,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Change your avatar"/>
                                 <connections>
-                                    <action selector="ChangeAvatar:" destination="VqD-70-BTj" eventType="touchUpInside" id="Rdj-uG-I7x"/>
+                                    <action selector="changBT:" destination="VqD-70-BTj" eventType="touchUpInside" id="4Ug-iK-2Vv"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your new user name here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bfd-o1-Vjl">
@@ -508,7 +508,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="save"/>
                                 <connections>
-                                    <action selector="saveBT:" destination="VqD-70-BTj" eventType="touchUpInside" id="cV5-g7-t0p"/>
+                                    <action selector="saveBT:" destination="VqD-70-BTj" eventType="touchUpInside" id="0Ii-dm-LIU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -516,8 +516,8 @@
                         <viewLayoutGuide key="safeArea" id="oTV-Oj-htT"/>
                     </view>
                     <connections>
-                        <outlet property="Avatar" destination="ZAb-wi-UYH" id="4zb-jg-Xvn"/>
-                        <outlet property="newAccName" destination="bfd-o1-Vjl" id="Mwu-Zu-DJj"/>
+                        <outlet property="accName" destination="bfd-o1-Vjl" id="WtH-f2-xgs"/>
+                        <outlet property="profileImage" destination="ZAb-wi-UYH" id="2w1-5S-YvU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZ4-jj-qXj" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -35,7 +35,10 @@ class AvatarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         getData()
+        ProgressHUD.show("Waiting")
+        Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
     }
+    
     func getData() {
         let currentUserID = Auth.auth().currentUser?.uid
         let ref = Database.database().reference()

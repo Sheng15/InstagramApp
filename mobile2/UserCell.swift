@@ -1,9 +1,17 @@
 //
 //  UserCell.swift
-//  mobile2
+//  
 //
 //  Created by LudwiG on 2018/10/9.
-//  Copyright © 2018年 LudwiG. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class UserCell: UITableViewCell {
+
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    var userID: String!
+    
+}
