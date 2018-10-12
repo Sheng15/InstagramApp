@@ -24,8 +24,8 @@ class AvatarViewController: UIViewController {
         
         profileImage.layer.cornerRadius = 58
         profileImage.clipsToBounds = true
-        ProgressHUD.show("Waiting")
-        Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
+        ProgressHUD.show("Loading...")
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
         
     }
     
@@ -35,8 +35,8 @@ class AvatarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         getData()
-        ProgressHUD.show("Waiting")
-        Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
+        ProgressHUD.show("Loading...")
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
     }
     
     func getData() {

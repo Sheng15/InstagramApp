@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
+import ProgressHUD
 
 class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
@@ -23,6 +24,9 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.postsTableView.dataSource = self
         loadData()
         
+        ProgressHUD.show("Loading...")
+        Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -31,6 +35,10 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
 
     // MARK: - Table view data source
+    
+    @objc func shows() {
+        ProgressHUD.showSuccess()
+    }
     
     func loadData(){
         Database.database().reference().child("posts").observeSingleEvent(of: .value, with: { (snapshot) in

@@ -26,10 +26,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         storageRef = Storage.storage().reference()
         getData()
         
-        profileImage.layer.cornerRadius = 50
+        profileImage.layer.cornerRadius = 49
         profileImage.clipsToBounds = true
-        ProgressHUD.show("Waiting")
-        Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
+        ProgressHUD.show("Loading...")
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
         
     }
     
@@ -85,12 +85,22 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         picker.dismiss(animated: true, completion: nil)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        ProgressHUD.show("Updating...")
+        Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
+    }
     @IBAction func saveBT(_ sender: Any) {
+        
+        if self.accName.text!.count < 5 {
+            ProgressHUD.showError("User name cannot be shorter than 5 characters!")
+            return
+        }
+        
         updateData()
         
         let avt = self.storyboard?.instantiateViewController(withIdentifier: "h1") as! UITabBarController
         avt.selectedIndex = 0
-        self.present(avt, animated: true, completion: ProgressHUD.showSuccess)
+        self.present(avt, animated: true, completion: nil)
     }
     
     
@@ -101,12 +111,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             if let newImage = image.jpegData(compressionQuality: 0.1){
                 storageItem.putData(newImage, metadata: nil, completion: { (metadata, error) in
                     if error != nil{
-                        print(error!)
+                        ProgressHUD.showError(error?.localizedDescription)
                         return
                     }
                     storageItem.downloadURL(completion: { (url, error) in
                         if error != nil{
-                            print(error!)
+                            ProgressHUD.showError(error?.localizedDescription)
                             return
                         }
                         if let profilePhotoURL = url?.absoluteString{
@@ -116,7 +126,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                             
                             self.databaseRef.child("users").child(uid).updateChildValues(newValuesForProfile, withCompletionBlock: { (error, ref) in
                                 if error != nil{
-                                    print(error!)
+                                    ProgressHUD.showError(error?.localizedDescription)
                                     return
                                 }
                             })
