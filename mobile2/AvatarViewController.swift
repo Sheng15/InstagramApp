@@ -8,17 +8,71 @@
 
 import UIKit
 import Firebase
+import ProgressHUD
 
-class AvatarViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AvatarViewController: UIViewController {
     
 
-    @IBOutlet weak var Avatars: UIImageView!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var accname: UILabel!
+    
+    var refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        getData()
+        
+        profileImage.layer.cornerRadius = 58
+        profileImage.clipsToBounds = true
+        ProgressHUD.show("Waiting")
+        Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
+        
     }
     
+    @objc func shows() {
+        ProgressHUD.showSuccess()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getData()
+        ProgressHUD.show("Waiting")
+        Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
+    }
+    
+    func getData() {
+        let currentUserID = Auth.auth().currentUser?.uid
+        let ref = Database.database().reference()
+        ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+            
+            let users = snapshot.value as! [String: AnyObject]
+            for (_, value) in users {
+                if let uid = value["uid"] as? String {
+                    if uid == currentUserID {
+                        if let accName = value["username"] as? String, let profileUrl = value["profile_image"] as? String {
+                            self.accname.text = accName
+                            let url = URLRequest(url: URL(string: profileUrl)!)
+                            
+                            let event = URLSession.shared.dataTask(with: url) {
+                                (data, response, error) in
+                                
+                                if error != nil {
+                                    ProgressHUD.showError(error?.localizedDescription)
+                                    return
+                                }
+                                
+                                DispatchQueue.main.async {
+                                    self.profileImage.image = UIImage(data: data!)
+                                }
+                            }
+                            event.resume()
+                            break
+                        }
+                    }
+                }
+            }
+        })
+        ref.removeAllObservers()
+    }
     @IBAction func LGBT(_ sender: Any) {
         do {
             try Auth.auth().signOut()
@@ -30,55 +84,6 @@ class AvatarViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.present(ssb!, animated: true, completion: nil)
     }
     
-    @IBAction func ChangeBT(_ sender: Any) {
-        
-        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "CAMERA", style: .default, handler: { alertAction in
-            self.showImagePickerForSourceType(.camera)
-        }))
-        
-        //photo source - photo library
-        actionSheet.addAction(UIAlertAction(title: "PHOTO LIBRARY", style: .default, handler: { alertAction in
-            self.showImagePickerForSourceType(.photoLibrary)
-        }))
-        
-        //cancel button
-        actionSheet.addAction(UIAlertAction(title: "CANCEL", style: .cancel, handler:nil))
-        
-        present(actionSheet, animated: true, completion: nil)
-    }
     
-    func showImagePickerForSourceType(_ sourceType: UIImagePickerController.SourceType) {
-        
-        DispatchQueue.main.async(execute: {
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.allowsEditing = true
-            imagePickerController.modalPresentationStyle = .currentContext
-            imagePickerController.sourceType = sourceType
-            ////////////////////////////////////////
-            /*
-             We actually have two delegates:UIImagePickerControllerDelegate and UINavigationControllerDelegate. The UINavigationControllerDelegate is required but we do nothing with it.
-             Add the following:
-             */
-            imagePickerController.delegate = self
-            
-            self.present(imagePickerController, animated: true, completion: nil)
-        })
-        
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[UIImagePickerController.InfoKey.originalImage]  as? UIImage else {
-            return
-        }
-        
-        self.Avatars.image = image
-        picker.dismiss(animated: true, completion: nil)
-        
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
     
 }

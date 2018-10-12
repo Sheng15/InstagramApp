@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import  Firebase
-import FirebaseDatabase
 
 class PostTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var contentTextView: UITextView!
+<<<<<<< HEAD
     @IBOutlet weak var likeLabel: UILabel!
    
     
@@ -99,6 +98,8 @@ class PostTableViewCell: UITableViewCell {
         ref.removeAllObservers()
     }
     
+=======
+>>>>>>> 4f242a50d5bfb647639d0377455c657126574478
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -68,10 +68,6 @@ class RegisterViewController: UIViewController, UITextViewDelegate {
                         let selected = self.SelectedImage
                         let imageDT = selected!.jpegData(compressionQuality: 0.1)
                         let storageRef = Storage.storage().reference().child("profile_image").child(self.uuid!)
-                        
-                        
-                        
-                        
                         storageRef.putData(imageDT!, metadata: nil, completion: { (metadata, error) in
                             if error != nil {
                                 ProgressHUD.showError(error?.localizedDescription)
