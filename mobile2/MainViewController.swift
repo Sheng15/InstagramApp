@@ -15,7 +15,10 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
     @IBOutlet weak var postsTableView: UITableView!
     
-    var posts = NSMutableArray()
+//    var posts = NSMutableArray()
+    var posts = [Post]()
+    var following = [String]()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,19 +36,64 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     // MARK: - Table view data source
     
     func loadData(){
-        Database.database().reference().child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let postsDictionary = snapshot.value as? [String: AnyObject]{
-                for post in postsDictionary{
-                    print("==========================")
-                    //                    print(post)
-                    print("==========================")
-                    
-                    self.posts.add(post.value)
+//        Database.database().reference().child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let postsDictionary = snapshot.value as? [String: AnyObject]{
+//                for post in postsDictionary{
+////                    print("==========================")
+////                    print(post)
+////                    print("==========================")
+//
+//                    self.posts.add(post.value)
+//                }
+//                self.postsTableView.reloadData()
+//            }
+//        })
+        let ref = Database.database().reference()
+        ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+            let users = snapshot.value as! [String : AnyObject]
+            for (_, value) in users{
+                if let uid = value["uid"] as? String{
+                    if uid == Auth.auth().currentUser?.uid{
+                        if let followingUsers = value["following"] as? [String : String]{
+                            for (_,user) in followingUsers{
+                                self.following.append(user)
+                            }
+                        }
+                        self.following.append(Auth.auth().currentUser!.uid)
+                        ref.child("posts").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snap) in
+                            let postsSnap = snap.value as! [String: AnyObject]
+                            for(_,post) in postsSnap{
+                                if let userID = post["userID"] as? String{
+                                    for each in self.following{
+                                        if each == userID{
+                                            let posttt = Post()
+                                            if let author = post["author"] as? String, let likes = post["likes"] as? Int, let photoUrl = post["photoUrl"] as? String, let postID = post["postID"] as? String, let text = post["text"] as? String{
+                                                posttt.author = author
+                                                posttt.likes = likes
+                                                posttt.photoUrl = photoUrl
+                                                posttt.text = text
+                                                posttt.userID = userID
+                                                posttt.postID = postID
+                                                
+                                                if let people = post["peopleWhoLike"] as? [String : AnyObject]{
+                                                    for (_,person) in people {
+                                                        posttt.peopleWhoLike.append(person as! String)
+                                                    }
+                                                }
+                                                
+                                                self.posts.append(posttt)
+                                            }
+                                        }
+                                    }
+                                    self.postsTableView.reloadData()
+                                }
+                            }
+                        })
+                    }
                 }
-                self.postsTableView.reloadData()
             }
         })
-        
+        ref.removeAllObservers()
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,29 +110,42 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PostTableViewCell
-       
-
         
-        // Configure the cell...
-        let post = self.posts[indexPath.row] as! [String: AnyObject]
-        cell.contentTextView.text = post["text"] as?  String
-        print("//////////////")
-        if let urlString = post["photoUrl"] as? String{
-            if let url = NSURL(string: urlString){
-                URLSession.shared.dataTask(with: url as URL,completionHandler:{(data, response, error) in
-            if error != nil{
-                print(error as Any)
-                
-                
+        // creating the cell...
+        
+//        let post = self.posts[indexPath.row] as! [String: AnyObject]
+//
+//        cell.contentTextView.text = post["text"] as?  String
+//        cell.titleLabel.text = post["author"] as? String
+//        print("//////////////")
+//        if let urlString = post["photoUrl"] as? String{
+//            if let url = NSURL(string: urlString){
+//                URLSession.shared.dataTask(with: url as URL,completionHandler:{(data, response, error) in
+//            if error != nil{
+//                print(error as Any)
+//
+//
+//            }
+//                    print(urlString)
+//                    print("这是图片链接")
+//             DispatchQueue.main.sync  {
+//                    cell.postImageView.image = UIImage(data: data!)
+//                    }
+//        }).resume()
+//            }}
+        cell.postImageView.getProfileImage(from: self.posts[indexPath.row].photoUrl)
+        cell.titleLabel.text = self.posts[indexPath.row].author
+        cell.likeLabel.text = "\(self.posts[indexPath.row].likes!) likes"
+        cell.contentTextView.text = self.posts[indexPath.row].text
+        cell.postID = self.posts[indexPath.row].postID
+        
+        for person in self.posts[indexPath.row].peopleWhoLike{
+            if person == Auth.auth().currentUser?.uid{
+                cell.likeBtn.isHidden = true
+                cell.unlikeBtn.isHidden = false
+                break
             }
-                    print(urlString)
-                    print("这是图片链接")
-             DispatchQueue.main.sync  {
-                    cell.postImageView.image = UIImage(data: data!)
-                    }
-        }).resume()
-            }}
-        
+        }
         
         return cell
     }
