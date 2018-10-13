@@ -15,13 +15,17 @@ class AvatarViewController: UIViewController {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var accname: UILabel!
+    @IBOutlet weak var posts: UILabel!
+    @IBOutlet weak var following: UILabel!
+    @IBOutlet weak var follower: UILabel!
     
-    var refreshControl = UIRefreshControl()
+    var postList: Array<Any>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.postList = []
         getData()
-        
+
         profileImage.layer.cornerRadius = 58
         profileImage.clipsToBounds = true
         ProgressHUD.show("Loading...")
@@ -34,7 +38,9 @@ class AvatarViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.postList = []
         getData()
+        
         ProgressHUD.show("Loading...")
         Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
     }
@@ -71,6 +77,30 @@ class AvatarViewController: UIViewController {
                 }
             }
         })
+        let ref2 = Database.database().reference().child("users").child(currentUserID!).child("following")
+        let ref3 = Database.database().reference().child("users").child(currentUserID!).child("followers")
+        let ref4 = Database.database().reference().child("posts")
+        ref2.observe(.value, with: { (snapshot: DataSnapshot!) in
+            print(snapshot.childrenCount)
+            self.following.text = String(snapshot.childrenCount)
+
+        })
+        ref3.observe(.value, with: { (snapshot: DataSnapshot!) in
+            print(snapshot.childrenCount)
+            self.follower.text = String(snapshot.childrenCount)
+            
+        })
+        ref4.observe(.value, with: { (snapshot: DataSnapshot!) in
+            if let uniqid = snapshot.value as? [String: AnyObject] {
+                for (k, value) in uniqid {
+                    if value["userID"] as? String == currentUserID {
+                        self.postList.append(k)
+                    }
+                }
+            }
+            self.posts.text = String((self.postList).count)
+        })
+        self.postList = []
         ref.removeAllObservers()
     }
     @IBAction func LGBT(_ sender: Any) {

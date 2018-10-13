@@ -469,6 +469,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="accname" destination="5F1-eS-CAe" id="WXd-dr-d4a"/>
+                        <outlet property="follower" destination="vot-dC-9G7" id="eMv-SO-tn3"/>
+                        <outlet property="following" destination="Wdl-CO-f3Q" id="Fig-1h-opv"/>
+                        <outlet property="posts" destination="04n-Aq-zOj" id="mLc-P9-WAZ"/>
                         <outlet property="profileImage" destination="W9t-du-R9M" id="Lrf-wb-Y9s"/>
                     </connections>
                 </viewController>
@@ -484,28 +487,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="ZAb-wi-UYH">
-                                <rect key="frame" x="129" y="116" width="99" height="99"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="ZAb-wi-UYH">
+                                <rect key="frame" x="138" y="116" width="99" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="99" id="jM2-7J-hCM"/>
+                                    <constraint firstAttribute="height" constant="99" id="r4L-hd-gzn"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8IX-zW-EjR">
-                                <rect key="frame" x="111" y="223" width="134" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8IX-zW-EjR">
+                                <rect key="frame" x="120.5" y="223" width="134" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="MkD-Vs-2ut"/>
+                                    <constraint firstAttribute="width" constant="134" id="fHW-cv-bs5"/>
+                                </constraints>
                                 <state key="normal" title="Change your avatar"/>
                                 <connections>
                                     <action selector="changBT:" destination="VqD-70-BTj" eventType="touchUpInside" id="4Ug-iK-2Vv"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your new user name here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bfd-o1-Vjl">
-                                <rect key="frame" x="75" y="293" width="206" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your new user name here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bfd-o1-Vjl">
+                                <rect key="frame" x="84.5" y="293" width="206" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="206" id="FT7-36-8zZ"/>
+                                    <constraint firstAttribute="height" constant="30" id="eor-2u-AVS"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bz2-KR-i2I">
-                                <rect key="frame" x="145" y="371" width="67" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bz2-KR-i2I">
+                                <rect key="frame" x="154" y="371" width="67" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="67" id="3Vl-d2-LLF"/>
+                                    <constraint firstAttribute="height" constant="30" id="luq-f0-lPo"/>
+                                </constraints>
                                 <state key="normal" title="save"/>
                                 <connections>
                                     <action selector="saveBT:" destination="VqD-70-BTj" eventType="touchUpInside" id="0Ii-dm-LIU"/>
@@ -513,6 +528,16 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8IX-zW-EjR" firstAttribute="centerX" secondItem="HVU-8f-zjW" secondAttribute="centerX" id="9qs-rr-Qof"/>
+                            <constraint firstItem="ZAb-wi-UYH" firstAttribute="top" secondItem="oTV-Oj-htT" secondAttribute="top" constant="52" id="AvS-CB-0WD"/>
+                            <constraint firstItem="ZAb-wi-UYH" firstAttribute="centerX" secondItem="HVU-8f-zjW" secondAttribute="centerX" id="Dzo-ez-fbH"/>
+                            <constraint firstItem="bfd-o1-Vjl" firstAttribute="top" secondItem="8IX-zW-EjR" secondAttribute="bottom" constant="40" id="IBN-cu-6h3"/>
+                            <constraint firstItem="bz2-KR-i2I" firstAttribute="top" secondItem="bfd-o1-Vjl" secondAttribute="bottom" constant="48" id="J65-4X-76b"/>
+                            <constraint firstItem="8IX-zW-EjR" firstAttribute="top" secondItem="ZAb-wi-UYH" secondAttribute="bottom" constant="8" id="LBD-8Q-pXe"/>
+                            <constraint firstItem="bfd-o1-Vjl" firstAttribute="centerX" secondItem="HVU-8f-zjW" secondAttribute="centerX" id="Lte-AN-df1"/>
+                            <constraint firstItem="bz2-KR-i2I" firstAttribute="centerX" secondItem="HVU-8f-zjW" secondAttribute="centerX" id="Mp0-KC-gvX"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="oTV-Oj-htT"/>
                     </view>
                     <connections>
@@ -917,7 +942,7 @@
         <image name="add" width="22" height="22"/>
         <image name="comment" width="43" height="41"/>
         <image name="discover" width="25" height="25"/>
-        <image name="insfake" width="1065" height="420"/>
+        <image name="insfake" width="2130" height="840"/>
         <image name="like" width="46" height="41"/>
         <image name="placeholder-photo" width="840" height="600"/>
         <image name="placeholderImg" width="225" height="225"/>

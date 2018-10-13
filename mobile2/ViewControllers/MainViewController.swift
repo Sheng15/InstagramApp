@@ -8,8 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
-import FirebaseStorage
 import ProgressHUD
 
 class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
