@@ -15,15 +15,18 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var likeLabel: UILabel!
+    @IBOutlet weak var likeListTextView: UITextView!
     
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var unlikeBtn: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
     
+    var likelist = [String]()
     var postID: String!
     @IBAction func likeProcessed(_ sender: Any) {
         self.likeBtn.isEnabled = false
         let ref = Database.database().reference()
+        let currentUserID = Auth.auth().currentUser?.uid
         let key2Post = ref.child("posts").childByAutoId().key
         ref.child("posts").child(self.postID).observeSingleEvent(of: .value, with: { (snapshot) in
             if (snapshot.value as? [String: AnyObject]) != nil{
@@ -36,8 +39,32 @@ class PostTableViewCell: UITableViewCell {
                                     let count = likes.count
                                     self.likeLabel.text = "\(count) likes"
                                     
+                                    
+                                    
                                     let update = ["likes": count]
                                     ref.child("posts").child(self.postID).updateChildValues(update)
+                                    
+                                    ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: {snapshot in
+                                        let users = snapshot.value as! [String: AnyObject]
+                                        for(_,value) in users {
+                                            if let uid = value["uid"] as? String{
+                                                if uid == currentUserID{
+                                                    let peopleLike = value["username"] as? String
+                                                    self.likelist.append(peopleLike!)
+                                                    print("这是赞")
+                                                    print(self.likelist)
+                                                    
+                                                    let showLikeList = self.likelist.joined(separator: ", ")
+                                                    
+                                                    self.likeListTextView.text = "liked by "+showLikeList
+                                                    
+                                                }
+                                            }
+                                        }
+                                        
+                                    })
+                                    
+                                    
                                     
                                     self.likeBtn.isHidden = true
                                     self.unlikeBtn.isHidden = false
@@ -55,6 +82,8 @@ class PostTableViewCell: UITableViewCell {
     @IBAction func unlikeProcessed(_ sender: Any) {
         self.unlikeBtn.isEnabled = false
         let ref = Database.database().reference()
+        let currentUserID = Auth.auth().currentUser?.uid
+        
         ref.child("posts").child(self.postID).observeSingleEvent(of: .value, with: { (snapshot) in
             if let properties = snapshot.value as? [String : AnyObject] {
                 if let peopleWhoLike = properties["peopleWhoLike"] as? [String : AnyObject]{
@@ -67,12 +96,58 @@ class PostTableViewCell: UITableViewCell {
                                             if let likes = prop["peopleWhoLike"] as? [String : AnyObject]{
                                                 let count = likes.count
                                                 self.likeLabel.text = "\(count) likes"
-                                                //                                                let update = ["likes": count]
                                                 
                                                 ref.child("posts").child(self.postID).updateChildValues(["likes" : count])
+                                                
+                                                
+                                                ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: {snapshot in
+                                                    let users = snapshot.value as! [String: AnyObject]
+                                                    for(_,value) in users {
+                                                        if let uid = value["uid"] as? String{
+                                                            if uid == currentUserID{
+                                                                let peopleLike = value["username"] as? String
+                                                                while let idx = self.likelist.index(of: peopleLike!){
+                                                                    self.likelist.remove(at: idx)
+                                                                }
+                                                                print("这是取消赞111")
+                                                                print(self.likelist)
+                                                                
+                                                                let showLikeList = self.likelist.joined(separator: ", ")
+                                                                
+                                                                self.likeListTextView.text = "liked by "+showLikeList
+                                                                
+                                                            }
+                                                        }
+                                                    }
+                                                    
+                                                })
+                                                
+                                                
                                             }else{
                                                 self.likeLabel.text = "0 likes"
                                                 ref.child("posts").child(self.postID).updateChildValues(["likes" : 0])
+                                                ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: {snapshot in
+                                                    let users = snapshot.value as! [String: AnyObject]
+                                                    for(_,value) in users {
+                                                        if let uid = value["uid"] as? String{
+                                                            if uid == currentUserID{
+                                                                let peopleLike = value["username"] as? String
+                                                                while let idx = self.likelist.index(of: peopleLike!){
+                                                                    self.likelist.remove(at: idx)
+                                                                }
+                                                                print("这是取消赞222")
+                                                                print(self.likelist)
+                                                                
+                                                                let showLikeList = self.likelist.joined(separator: ", ")
+                                                                
+                                                                self.likeListTextView.text = "liked by "+showLikeList
+                                                                
+                                                            }
+                                                        }
+                                                    }
+                                                    
+                                                })
+                                                self.likeListTextView.text = ""
                                                 
                                             }
                                         }

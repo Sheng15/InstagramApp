@@ -727,6 +727,13 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="comment" image="comment"/>
                                                 </button>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IDf-UX-TbN">
+                                                    <rect key="frame" x="112" y="416" width="240" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -734,6 +741,7 @@
                                             <outlet property="contentTextView" destination="dqv-AW-6JN" id="TTe-Sr-XZR"/>
                                             <outlet property="likeBtn" destination="WES-Hm-wVB" id="MNr-Zp-5Fu"/>
                                             <outlet property="likeLabel" destination="g0g-M3-fm4" id="YHq-jY-2eZ"/>
+                                            <outlet property="likeListTextView" destination="IDf-UX-TbN" id="BRi-qa-vrd"/>
                                             <outlet property="postImageView" destination="q7i-gC-z4X" id="NcX-bF-wmx"/>
                                             <outlet property="titleLabel" destination="LJN-hu-ucM" id="iXR-Yp-JXT"/>
                                             <outlet property="unlikeBtn" destination="rnP-mK-xG4" id="WcS-uP-LKb"/>
@@ -942,7 +950,7 @@
         <image name="add" width="22" height="22"/>
         <image name="comment" width="43" height="41"/>
         <image name="discover" width="25" height="25"/>
-        <image name="insfake" width="2130" height="840"/>
+        <image name="insfake" width="1065" height="420"/>
         <image name="like" width="46" height="41"/>
         <image name="placeholder-photo" width="840" height="600"/>
         <image name="placeholderImg" width="225" height="225"/>
