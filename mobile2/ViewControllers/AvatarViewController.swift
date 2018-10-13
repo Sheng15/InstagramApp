@@ -23,29 +23,20 @@ class AvatarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.postList = []
         getData()
 
         profileImage.layer.cornerRadius = 58
         profileImage.clipsToBounds = true
         ProgressHUD.show("Loading...")
         Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
-        
     }
     
     @objc func shows() {
         ProgressHUD.showSuccess()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.postList = []
-        getData()
-        
-        ProgressHUD.show("Loading...")
-        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
-    }
-    
     func getData() {
+        self.postList = []
         let currentUserID = Auth.auth().currentUser?.uid
         let ref = Database.database().reference()
         ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
