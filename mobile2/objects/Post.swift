@@ -18,7 +18,8 @@ class Post: NSObject {
     var postID: String!
     
     
+    
     var peopleWhoLike: [String] = [String]()
     
-    
+    var likelist = [String]()
 }

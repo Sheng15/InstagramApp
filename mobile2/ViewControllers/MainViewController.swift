@@ -17,6 +17,8 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     //    var posts = NSMutableArray()
     var posts = [Post]()
     var following = [String]()
+    
+    var likelistTony = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,21 +74,23 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                     for each in self.following{
                                         if each == userID{
                                             let posttt = Post()
-                                            if let author = post["author"] as? String, let likes = post["likes"] as? Int, let photoUrl = post["photoUrl"] as? String, let postID = post["postID"] as? String, let text = post["text"] as? String{
+                                            if let author = post["author"] as? String, let likes = post["likes"] as? Int, let photoUrl = post["photoUrl"] as? String, let postID = post["postID"] as? String, let text = post["text"] as? String,let people = post["peopleWhoLike"] as? [String : AnyObject]{
                                                 posttt.author = author
                                                 posttt.likes = likes
                                                 posttt.photoUrl = photoUrl
                                                 posttt.text = text
                                                 posttt.userID = userID
                                                 posttt.postID = postID
-                                                
+                                              
                                                 if let people = post["peopleWhoLike"] as? [String : AnyObject]{
                                                     for (_,person) in people {
                                                         posttt.peopleWhoLike.append(person as! String)
                                                     }
                                                 }
-                                                
+                                                print("======check point 111 ======")
+                                              print(posttt.peopleWhoLike)
                                                 self.posts.append(posttt)
+                                               
                                             }
                                         }
                                     }
@@ -117,32 +121,41 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PostTableViewCell
         
         // creating the cell...
-        
-        //        let post = self.posts[indexPath.row] as! [String: AnyObject]
-        //
-        //        cell.contentTextView.text = post["text"] as?  String
-        //        cell.titleLabel.text = post["author"] as? String
-        //        print("//////////////")
-        //        if let urlString = post["photoUrl"] as? String{
-        //            if let url = NSURL(string: urlString){
-        //                URLSession.shared.dataTask(with: url as URL,completionHandler:{(data, response, error) in
-        //            if error != nil{
-        //                print(error as Any)
-        //
-        //
-        //            }
-        //                    print(urlString)
-        //                    print("这是图片链接")
-        //             DispatchQueue.main.sync  {
-        //                    cell.postImageView.image = UIImage(data: data!)
-        //                    }
-        //        }).resume()
-        //            }}
         cell.postImageView.getProfileImage(from: self.posts[indexPath.row].photoUrl)
         cell.titleLabel.text = self.posts[indexPath.row].author
         cell.likeLabel.text = "\(self.posts[indexPath.row].likes!) likes"
         cell.contentTextView.text = self.posts[indexPath.row].text
         cell.postID = self.posts[indexPath.row].postID
+        
+        for value in self.posts[indexPath.row].peopleWhoLike{
+            let uidd = value 
+            let ref = Database.database().reference()
+
+            ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: {snapshot in
+                let users = snapshot.value as! [String: AnyObject]
+                for(_,value) in users {
+                    if let uid = value["uid"] as? String{
+                        if uid==uidd{
+                            let peopleLike = value["username"] as? String
+                            self.likelistTony.append(peopleLike!)
+                            let unique = Array(Set(self.likelistTony))
+                            if unique != []{
+                                let showLikeList = unique.joined(separator: ", ")
+                                
+                                cell.likeListTextView.text = "liked by "+showLikeList
+                            }else{
+                                cell.likeListTextView.text = ""
+                            }
+
+                        }
+                    }
+                }
+                
+            })
+        }
+
+
+      
         
         for person in self.posts[indexPath.row].peopleWhoLike{
             if person == Auth.auth().currentUser?.uid{

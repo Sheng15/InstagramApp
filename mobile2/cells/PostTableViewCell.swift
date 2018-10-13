@@ -21,8 +21,25 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var unlikeBtn: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
     
-    var likelist = [String]()
     var postID: String!
+    var likelist = [String]()
+    
+    
+    //load previous like of users, add them to the array like list
+//    let ref = Database.database().reference()
+//    ref.child("posts").child(self.postID).observeSingleEvent(of: .value, with: { (snapshot) in
+//
+//    })
+
+
+
+    
+    
+    
+    
+    
+    
+    
     @IBAction func likeProcessed(_ sender: Any) {
         self.likeBtn.isEnabled = false
         let ref = Database.database().reference()
@@ -35,7 +52,29 @@ class PostTableViewCell: UITableViewCell {
                     if error == nil{
                         ref.child("posts").child(self.postID).observeSingleEvent(of: .value, with: { (snap) in
                             if let properties = snap.value as? [String : AnyObject]{
+                                
+                                
+                                
                                 if let likes = properties["peopleWhoLike"] as? [String : AnyObject]{
+                                   
+                                    for (_,value) in likes{
+                                        let uidd = value as! String
+                                        ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: {snapshot in
+                                            let users = snapshot.value as! [String: AnyObject]
+                                            for(_,value) in users {
+                                                if let uid = value["uid"] as? String{
+                                                    if uid==uidd{
+                                                        let peopleLike = value["username"] as? String
+                                                        self.likelist.append(peopleLike!)
+                                                    }
+                                                }
+                                            }
+
+                                        })
+                                    }
+                                    
+                                    
+                                    
                                     let count = likes.count
                                     self.likeLabel.text = "\(count) likes"
                                     
@@ -50,11 +89,16 @@ class PostTableViewCell: UITableViewCell {
                                             if let uid = value["uid"] as? String{
                                                 if uid == currentUserID{
                                                     let peopleLike = value["username"] as? String
+                                                    
+                                                    
                                                     self.likelist.append(peopleLike!)
+                                                    
+                                                    //swift is awsome!!!!!!!!!!!!!!!!!!!!!
+                                                    let unique = Array(Set(self.likelist))
                                                     print("这是赞")
                                                     print(self.likelist)
                                                     
-                                                    let showLikeList = self.likelist.joined(separator: ", ")
+                                                    let showLikeList = unique.joined(separator: ", ")
                                                     
                                                     self.likeListTextView.text = "liked by "+showLikeList
                                                     
@@ -94,6 +138,25 @@ class PostTableViewCell: UITableViewCell {
                                     ref.child("posts").child(self.postID).observeSingleEvent(of: .value, with: { (snap) in
                                         if let prop = snap.value as? [String : AnyObject]{
                                             if let likes = prop["peopleWhoLike"] as? [String : AnyObject]{
+                                                
+                                                
+                                                for (_,value) in likes{
+                                                    let uidd = value as! String
+                                                    ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: {snapshot in
+                                                        let users = snapshot.value as! [String: AnyObject]
+                                                        for(_,value) in users {
+                                                            if let uid = value["uid"] as? String{
+                                                                if uid==uidd{
+                                                                    let peopleLike = value["username"] as? String
+                                                                    self.likelist.append(peopleLike!)
+                                                                }
+                                                            }
+                                                        }
+                                                        
+                                                    })
+                                                }
+                                                
+                                                
                                                 let count = likes.count
                                                 self.likeLabel.text = "\(count) likes"
                                                 
@@ -112,7 +175,9 @@ class PostTableViewCell: UITableViewCell {
                                                                 print("这是取消赞111")
                                                                 print(self.likelist)
                                                                 
-                                                                let showLikeList = self.likelist.joined(separator: ", ")
+                                                                let unique = Array(Set(self.likelist))
+
+                                                                let showLikeList = unique.joined(separator: ", ")
                                                                 
                                                                 self.likeListTextView.text = "liked by "+showLikeList
                                                                 
@@ -138,9 +203,11 @@ class PostTableViewCell: UITableViewCell {
                                                                 print("这是取消赞222")
                                                                 print(self.likelist)
                                                                 
-                                                                let showLikeList = self.likelist.joined(separator: ", ")
+                                                                let unique = Array(Set(self.likelist))
+
+                                                                let showLikeList = unique.joined(separator: ", ")
                                                                 
-                                                                self.likeListTextView.text = "liked by "+showLikeList
+                                                                self.likeListTextView.text = ""
                                                                 
                                                             }
                                                         }
