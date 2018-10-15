@@ -1,8 +1,8 @@
 //
-//  NavigationViewCell.swift
+//  NavigationViewController.swift
 //  mobile2
 //
-//  Created by 赵子健 on 2018/10/14.
+//  Created by 赵子健 on 2018/10/15.
 //  Copyright © 2018年 LudwiG. All rights reserved.
 //
 

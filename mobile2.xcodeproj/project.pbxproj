@@ -15,8 +15,8 @@
 		8896B13B2166647900E6C3B1 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8896B13A2166647900E6C3B1 /* PostTableViewCell.swift */; };
 		A2D1198069BA00826251811F /* Pods_mobile2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EFFD706B127BB2289E3699 /* Pods_mobile2Tests.framework */; };
 		DC0ECB962173239500C0AC8D /* DiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0ECB952173239500C0AC8D /* DiscoverCell.swift */; };
-		DC0ECB982173267B00C0AC8D /* DiscoverViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0ECB972173267B00C0AC8D /* DiscoverViewCell.swift */; };
-		DC0ECB9A2173268B00C0AC8D /* NavigationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0ECB992173268B00C0AC8D /* NavigationViewCell.swift */; };
+		DC395094217472400064890E /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC395093217472400064890E /* DiscoverViewController.swift */; };
+		DC395096217472980064890E /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC395095217472980064890E /* NavigationViewController.swift */; };
 		F828DD4F21523398009F2227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F828DD4E21523398009F2227 /* AppDelegate.swift */; };
 		F828DD5121523398009F2227 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F828DD5021523398009F2227 /* ViewController.swift */; };
 		F828DD5421523398009F2227 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F828DD5221523398009F2227 /* Main.storyboard */; };
@@ -64,8 +64,8 @@
 		B6A0793BBA749B58C3008782 /* Pods-mobile2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-mobile2Tests/Pods-mobile2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B6EFFD706B127BB2289E3699 /* Pods_mobile2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mobile2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0ECB952173239500C0AC8D /* DiscoverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCell.swift; sourceTree = "<group>"; };
-		DC0ECB972173267B00C0AC8D /* DiscoverViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewCell.swift; sourceTree = "<group>"; };
-		DC0ECB992173268B00C0AC8D /* NavigationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewCell.swift; sourceTree = "<group>"; };
+		DC395093217472400064890E /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		DC395095217472980064890E /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		E4D37E6A4A90088DA0D5E4B7 /* Pods-mobile2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mobile2UITests/Pods-mobile2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E927DE9A164FA62D016618F2 /* Pods_mobile2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mobile2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F828DD4B21523398009F2227 /* mobile2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobile2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,8 +236,8 @@
 				F860134B216C5F5E00F1AA25 /* AddTableViewController.swift */,
 				F88BEFA3215797940017F322 /* AvatarViewController.swift */,
 				F86013602170B0A800F1AA25 /* ProfileViewController.swift */,
-				DC0ECB972173267B00C0AC8D /* DiscoverViewCell.swift */,
-				DC0ECB992173268B00C0AC8D /* NavigationViewCell.swift */,
+				DC395093217472400064890E /* DiscoverViewController.swift */,
+				DC395095217472980064890E /* NavigationViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -477,10 +477,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC0ECB982173267B00C0AC8D /* DiscoverViewCell.swift in Sources */,
 				8896B1392166625200E6C3B1 /* MainViewController.swift in Sources */,
 				F841AA61215255B700632211 /* RegisterViewController.swift in Sources */,
 				F843B6542160B822004126FA /* CameraViewController.swift in Sources */,
+				DC395096217472980064890E /* NavigationViewController.swift in Sources */,
 				8896B13B2166647900E6C3B1 /* PostTableViewCell.swift in Sources */,
 				DC0ECB962173239500C0AC8D /* DiscoverCell.swift in Sources */,
 				88759D9D2170E6D1007FBF7B /* Post.swift in Sources */,
@@ -488,10 +488,10 @@
 				F828DD4F21523398009F2227 /* AppDelegate.swift in Sources */,
 				F86013612170B0A800F1AA25 /* ProfileViewController.swift in Sources */,
 				F88BEFA4215797940017F322 /* AvatarViewController.swift in Sources */,
+				DC395094217472400064890E /* DiscoverViewController.swift in Sources */,
 				F860135F2170B07600F1AA25 /* UserCell.swift in Sources */,
 				F8601353216C67D300F1AA25 /* User.swift in Sources */,
 				F860134C216C5F5E00F1AA25 /* AddTableViewController.swift in Sources */,
-				DC0ECB9A2173268B00C0AC8D /* NavigationViewCell.swift in Sources */,
 				F860135D21707AA500F1AA25 /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
