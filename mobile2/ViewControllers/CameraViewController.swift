@@ -20,6 +20,8 @@ class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerC
     var currentUserName: String?
 
     
+    
+    
     func tony(){
         if Auth.auth().currentUser?.uid != nil{
             
@@ -160,14 +162,15 @@ class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerC
         //            }
         //
         //        })
-        
+//        let timestamp = Int(Date().timeIntervalSince1970))
         newPostReferrence.setValue([
             "photoUrl": photoUrl,
             "text": TextData.text!,
             "postID" : newPostID!,
             "userID" : uid!,
             "likes" : 0,
-            "author": self.currentUserName!
+            "author": self.currentUserName!,
+            "postedDate" : Int(Date().timeIntervalSince1970)
             ], withCompletionBlock: {
                 (error, ref) in
                 if error != nil{

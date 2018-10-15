@@ -16,6 +16,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var likeListTextView: UITextView!
+    @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var unlikeBtn: UIButton!

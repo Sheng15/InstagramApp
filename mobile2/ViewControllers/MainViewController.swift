@@ -35,6 +35,8 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         ProgressHUD.show("Loading...")
         Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(shows), userInfo: nil, repeats: false)
     }
+    
+
 
     // MARK: - Table view data source
     
@@ -57,19 +59,22 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                         }
                         self.following.append(Auth.auth().currentUser!.uid)
                         ref.child("posts").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snap) in
+//                        ref.child("posts").queryOrdered(byChild: "postedDate").observeSingleEvent(of: .value, with: { (snap) in
+
                             let postsSnap = snap.value as! [String: AnyObject]
                             for(_,post) in postsSnap{
                                 if let userID = post["userID"] as? String{
                                     for each in self.following{
                                         if each == userID{
                                             let posttt = Post()
-                                            if let author = post["author"] as? String, let likes = post["likes"] as? Int, let photoUrl = post["photoUrl"] as? String, let postID = post["postID"] as? String, let text = post["text"] as? String{
+                                            if let author = post["author"] as? String, let likes = post["likes"] as? Int, let photoUrl = post["photoUrl"] as? String, let postID = post["postID"] as? String, let text = post["text"] as? String,let postedDate = post["postedDate"] as? Int{
                                                 posttt.author = author
                                                 posttt.likes = likes
                                                 posttt.photoUrl = photoUrl
                                                 posttt.text = text
                                                 posttt.userID = userID
                                                 posttt.postID = postID
+                                                posttt.postedTime = postedDate
                                               
                                                 if let people = post["peopleWhoLike"] as? [String : AnyObject]{
                                                     for (_,person) in people {
@@ -77,7 +82,7 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                                     }
                                                 }
                                                
-                                                self.posts.append(posttt)
+                                                self.posts.insert(posttt, at: 0)
                                                
                                             }
                                         }
@@ -105,8 +110,43 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
 
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PostTableViewCell
+        
+        print(self.posts[indexPath.row].postedTime)
+        
+        let timestamp = self.posts[indexPath.row].postedTime
+        let timestampDate = Date(timeIntervalSince1970: Double(timestamp!))
+        let now = Date()
+        let components = Set<Calendar.Component>([.second, .minute, .hour, .day, .weekOfMonth])
+        let diff = Calendar.current.dateComponents(components, from: timestampDate, to: now)
+        var timeText = ""
+        print(diff.second as Any)
+         print(diff.minute as Any)
+         print(diff.hour as Any)
+        if diff.second! <= 0{
+            timeText = "Now"
+        }
+        if diff.second! > 0 && diff.minute! == 0{
+            timeText = (diff.second == 1) ? "\(diff.second!) second ago " : "\(diff.second!) seconds ago"
+        }
+        if diff.minute! > 0 && diff.hour! == 0{
+            timeText = (diff.minute == 1) ? "\(diff.minute!) minute ago " : "\(diff.minute!) minutes ago"
+        }
+        if diff.hour! > 0 && diff.day! == 0 {
+            timeText = (diff.hour == 1) ? "\(diff.hour!) hour ago " : "\(diff.hour!) hours ago"
+        }
+        if diff.day! > 0 && diff.weekOfMonth! == 0 {
+            timeText = (diff.day == 1) ? "\(diff.day!) day ago " : "\(diff.day!) days ago"
+        }
+        
+        if diff.weekOfMonth! > 0 {
+            timeText = (diff.weekOfMonth == 1) ? "\(diff.weekOfMonth!) week ago " : "\(diff.weekOfMonth!) weeks ago"
+        }
+        
+        
+        cell.timeLabel.text = timeText
         
         // creating the cell...
         cell.postImageView.getProfileImage(from: self.posts[indexPath.row].photoUrl)
@@ -115,6 +155,7 @@ class MainViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell.contentTextView.text = self.posts[indexPath.row].text
         cell.postID = self.posts[indexPath.row].postID
         cell.likeListTextView.text = ""
+        
         
         for value in self.posts[indexPath.row].peopleWhoLike{
             let uidd = value 
