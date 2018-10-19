@@ -904,11 +904,81 @@
                         <outlet property="collectionView" destination="bKC-0C-RL1" id="dfA-Th-JHe"/>
                         <outlet property="imageView" destination="RfA-l7-fmX" id="fnW-4X-eD7"/>
                         <segue destination="l9C-Z7-qoy" kind="presentation" identifier="filterToPost" id="Asb-wf-x0p"/>
+                        <segue destination="SoW-w5-hX9" kind="presentation" identifier="filterToEdit" id="kAF-Bd-1W8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RvT-Rr-DYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4880.8000000000002" y="1025.9370314842579"/>
+        </scene>
+        <!--Crop Controller-->
+        <scene sceneID="xMO-4i-gbb">
+            <objects>
+                <viewController id="SoW-w5-hX9" customClass="CropController" customModule="mobile2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z5s-jc-WI0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dcy-mW-tJj">
+                                <rect key="frame" x="12" y="116" width="350" height="350"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                            </scrollView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yrY-EH-jnr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSt-y1-dT1">
+                                        <rect key="frame" x="297" y="23" width="57" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Next">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="nextOnClick:" destination="C6a-4d-OPK" eventType="touchUpInside" id="0u3-fk-Zh7"/>
+                                            <action selector="nextOnClick:" destination="SoW-w5-hX9" eventType="touchUpInside" id="iyv-sl-d04"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBB-fm-Gqz">
+                                <rect key="frame" x="0.0" y="25" width="91" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Cancle">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancleOnClick:" destination="SoW-w5-hX9" eventType="touchUpInside" id="9YS-BW-DeC"/>
+                                    <action selector="cancleOnClick:" destination="C6a-4d-OPK" eventType="touchUpInside" id="Ifd-7C-xtd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SdN-0Q-RNl">
+                                <rect key="frame" x="170" y="538" width="35" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="save">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveCropedImage:" destination="SoW-w5-hX9" eventType="touchUpInside" id="rSU-ja-okc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="yEW-Fj-xRz"/>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="Dcy-mW-tJj" id="jdI-t6-4I9"/>
+                        <segue destination="l9C-Z7-qoy" kind="presentation" identifier="editToPost" id="HVB-id-5Ti"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aaA-6r-lvr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5762" y="1441"/>
         </scene>
         <!--Post-->
         <scene sceneID="vbJ-wa-O1t">
@@ -1007,7 +1077,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDl-x7-NTi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5932" y="1025.9370314842579"/>
+            <point key="canvasLocation" x="6732" y="1026"/>
         </scene>
         <!--Home-->
         <scene sceneID="5FL-xy-MzE">
@@ -1210,6 +1280,7 @@
         <image name="user feed" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="HVB-id-5Ti"/>
         <segue reference="N6a-XR-Lbv"/>
     </inferredMetricsTieBreakers>
 </document>

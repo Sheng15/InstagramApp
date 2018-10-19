@@ -121,6 +121,7 @@ class FilterController: UIViewController {
     }
     
     @objc func editOnClick(_ sender:Any){
+        performSegue(withIdentifier: "filterToEdit", sender: nil)
         
     }
     
@@ -128,7 +129,9 @@ class FilterController: UIViewController {
         if let vc = segue.destination as? PostController{
             let image =  imageView.image!
             vc.SelectedImage = image
-            
+        }else if let vc = segue.destination as? CropController{
+            let image =  imageView.image!
+            vc.image = image
         }
     }
     
