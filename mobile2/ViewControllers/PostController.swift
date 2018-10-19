@@ -89,12 +89,7 @@ class PostController: UIViewController, UITextViewDelegate, UIImagePickerControl
         handlePost()
     }
     
-    @IBAction func removeBT(_ sender: Any) {
-        self.TextData.text = ""
-        self.ImageData.image = UIImage(named: "icon0.png")
-        self.SelectedImage = nil
-        handlePost()
-    }
+
     func handlePost() {
         if SelectedImage != nil {
             self.ShareBT.isEnabled = true
@@ -141,9 +136,7 @@ class PostController: UIViewController, UITextViewDelegate, UIImagePickerControl
                     self.present(avt!, animated: true, completion: nil)
                 }
             })
-        } else {
-            ProgressHUD.showError("Please choose an Image!")
-        }
+        } 
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

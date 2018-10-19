@@ -21,7 +21,6 @@
 		CE6DE7CB2175858C000911A9 /* ImagePickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DE7CA2175858C000911A9 /* ImagePickController.swift */; };
 		CE6DE7CD2177ABE7000911A9 /* FilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DE7CC2177ABE7000911A9 /* FilterController.swift */; };
 		CE6DE7CF2177B0D1000911A9 /* CustomCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DE7CE2177B0D1000911A9 /* CustomCameraController.swift */; };
-		CE6DE7D12177B5B3000911A9 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE6DE7D02177B5B2000911A9 /* test.jpg */; };
 		CEC0668121796E48004A12C1 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC0668021796E48004A12C1 /* PostController.swift */; };
 		DC0ECB962173239500C0AC8D /* DiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0ECB952173239500C0AC8D /* DiscoverCell.swift */; };
 		DC395094217472400064890E /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC395093217472400064890E /* DiscoverViewController.swift */; };
@@ -78,7 +77,6 @@
 		CE6DE7CA2175858C000911A9 /* ImagePickController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickController.swift; sourceTree = "<group>"; };
 		CE6DE7CC2177ABE7000911A9 /* FilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterController.swift; sourceTree = "<group>"; };
 		CE6DE7CE2177B0D1000911A9 /* CustomCameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraController.swift; sourceTree = "<group>"; };
-		CE6DE7D02177B5B2000911A9 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test.jpg; path = ../../../MobileDev/PhotoTest/ImageFilterTest/ImageFilterTest/test.jpg; sourceTree = "<group>"; };
 		CEC0668021796E48004A12C1 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 		DC0ECB952173239500C0AC8D /* DiscoverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCell.swift; sourceTree = "<group>"; };
 		DC395093217472400064890E /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
@@ -172,7 +170,6 @@
 		F828DD4221523398009F2227 = {
 			isa = PBXGroup;
 			children = (
-				CE6DE7D02177B5B2000911A9 /* test.jpg */,
 				F828DD4D21523398009F2227 /* mobile2 */,
 				F828DD6221523399009F2227 /* mobile2Tests */,
 				F828DD6D21523399009F2227 /* mobile2UITests */,
@@ -384,7 +381,6 @@
 			files = (
 				F828DD5921523399009F2227 /* LaunchScreen.storyboard in Resources */,
 				88759DA121721A12007FBF7B /* GoogleService-Info.plist in Resources */,
-				CE6DE7D12177B5B3000911A9 /* test.jpg in Resources */,
 				CE6DE7C3217580E9000911A9 /* AlbumCollectionViewCell.xib in Resources */,
 				F828DD5621523399009F2227 /* Assets.xcassets in Resources */,
 				CE6DE7C721758107000911A9 /* FilterCollectionViewCell.xib in Resources */,
