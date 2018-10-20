@@ -16,14 +16,16 @@ class DiscoverViewController: UITableViewController, UISearchBarDelegate {
     var searchBar = UISearchBar()
     
     //hold information from server
-    var user = [User]()
+    var selectUser = [User]()
     var databaseRef: DatabaseReference!
     var storageRef: StorageReference!
+    
+    // collectionView UI
+    var collectionView : UICollectionView!
     
     //default func
     override func viewDidLoad() {
         super.viewDidLoad()
-        overviewUsers()
         
         //implement search bar
         searchBar.delegate = self
@@ -33,13 +35,13 @@ class DiscoverViewController: UITableViewController, UISearchBarDelegate {
         searchBar.frame.size.width = self.view.frame.size.width - 34
         let searchItem = UIBarButtonItem(customView: searchBar)
         self.navigationItem.leftBarButtonItem = searchItem
+        
+        //call functions
+        overviewUsers()
     }
     
     // tapped on the searchBar
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
-        // hide collectionView when started search
-        //collectionView.isHidden = true
         
         // show cancel button
         searchBar.showsCancelButton = true
@@ -47,9 +49,6 @@ class DiscoverViewController: UITableViewController, UISearchBarDelegate {
     
     // clicked cancel button
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
-        // unhide collectionView when tapped cancel button
-        //collectionView.isHidden = false
         
         // dismiss keyboard
         searchBar.resignFirstResponder()
@@ -61,16 +60,43 @@ class DiscoverViewController: UITableViewController, UISearchBarDelegate {
         searchBar.text = ""
         
         // reset shown users
-        //loadUsers()
+        overviewUsers()
     }
     
-    //overview all users
+    // search updated
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let ref = Database.database().reference()
+        let searchUserID = searchBar.text!
+        ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+            let users = snapshot.value as! [String: AnyObject]
+            self.selectUser.removeAll()
+            for (_, value) in users {
+                if let accName = value["username"] as? String {
+                    if accName.lowercased().contains(searchUserID.lowercased()) {
+                        let searchUsers = User()
+                        if let uid = value["uid"] as? String, let profileUrl = value["profile_image"] as? String {
+                            searchUsers.accName = accName
+                            searchUsers.profileUrl = profileUrl
+                            searchUsers.userID = uid
+                            self.selectUser.append(searchUsers)
+                        }
+                    }
+                }
+            }
+            self.tableView.reloadData()
+        })
+        ref.removeAllObservers()
+        ProgressHUD.showSuccess()
+        return true
+    }
+    
+    //load suggest users
     func overviewUsers() {
         let ref = Database.database().reference()
         let currentUserID = Auth.auth().currentUser?.uid
         ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
             let users = snapshot.value as! [String: AnyObject]
-            self.user.removeAll()
+            self.selectUser.removeAll()
             for (_, value) in users {
                 if let uid = value["uid"] as? String {
                     if uid != currentUserID {
@@ -79,7 +105,7 @@ class DiscoverViewController: UITableViewController, UISearchBarDelegate {
                             otherUsers.accName = accName
                             otherUsers.profileUrl = profileUrl
                             otherUsers.userID = uid
-                            self.user.append(otherUsers)
+                            self.selectUser.append(otherUsers)
                         }
                     }
                 }
@@ -91,9 +117,9 @@ class DiscoverViewController: UITableViewController, UISearchBarDelegate {
     }
     
     // TABLEVIEW CODE
-    // cell numb
+    // cell number
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return user.count
+        return selectUser.count
     }
     
     // cell height
@@ -111,8 +137,17 @@ class DiscoverViewController: UITableViewController, UISearchBarDelegate {
         cell.followButton.isHidden = true
         
         // connect cell's objects with received infromation from server
-        cell.usernameLabel.text = self.user[indexPath.row].accName
-        cell.avaImg.getProfileImage(from: self.user[indexPath.row].profileUrl!)
+        cell.usernameLabel.text = self.selectUser[indexPath.row].accName
+        cell.avaImg.getProfileImage(from: self.selectUser[indexPath.row].profileUrl!)
         return cell
     }
+    
+    // selected tableView cell - selected user
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // calling cell again to call cell data
+        let cell = tableView.cellForRow(at: indexPath) as! DiscoverCell
+        
+    }
+    
 }
