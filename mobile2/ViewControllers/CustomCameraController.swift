@@ -12,13 +12,14 @@ import AVFoundation
 class CustomCameraController: UIViewController {
     
     var captureSession = AVCaptureSession()
-    var backCamera : AVCaptureDevice?
-    var frontCamera : AVCaptureDevice?
-    var currentCamera : AVCaptureDevice?
+    private var sessionQueue: DispatchQueue!
+    var backCamera : AVCaptureDevice!
+    var frontCamera : AVCaptureDevice!
+    var currentCamera : AVCaptureDevice!
     
-    var photoOutput : AVCapturePhotoOutput?
-    var cameraPreviewLayer : AVCaptureVideoPreviewLayer?
-    
+    var photoOutput : AVCapturePhotoOutput!
+    var cameraPreviewLayer : AVCaptureVideoPreviewLayer!
+    var usingFrontCamera = false
     var image :UIImage?
     
     override func viewDidLoad() {
@@ -33,34 +34,41 @@ class CustomCameraController: UIViewController {
     
     func setupCaptureSession(){
         captureSession.sessionPreset = AVCaptureSession.Preset.photo
+        sessionQueue = DispatchQueue(label: "session queue")
+        
     }
     
-    func setupDevice() {
-        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
-        let devices = deviceDiscoverySession.devices
-        
-        for device in devices{
-            if device.position == AVCaptureDevice.Position.back{
-                backCamera = device
-            } else if device.position == AVCaptureDevice.Position.front{
-                frontCamera = device
+    func setupDevice(usingFrontCamera: Bool = false) {
+        sessionQueue.async {
+            let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
+            let devices = deviceDiscoverySession.devices
+            
+            for device in devices{
+                if usingFrontCamera && device.position == .front {
+                    self.currentCamera = device
+                } else if device.position == .back {
+                    self.currentCamera = device
+                }
             }
         }
-        
-        currentCamera = AVCaptureDevice.default(.builtInDualCamera,for: .video, position: .back)
     }
     
     func setupInputOutput(){
-        
-        do{
-            let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
-            captureSession.addInput(captureDeviceInput)
-            photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey:AVVideoCodecType.jpeg])],completionHandler: nil)
-            captureSession.addOutput(photoOutput!)
-        }catch{
-            print(error)
+        sessionQueue.sync {
+            do{
+                let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera)
+                if self.captureSession.canAddInput(captureDeviceInput) {
+                    self.captureSession.addInput(captureDeviceInput)
+                }
+                photoOutput = AVCapturePhotoOutput()
+                photoOutput.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey:AVVideoCodecType.jpeg])],completionHandler: nil)
+                if self.captureSession.canAddOutput(photoOutput) {
+                    self.captureSession.addOutput(photoOutput)
+                }
+            }catch{
+                print(error)
+            }
         }
-        
     }
     
     func setupPerviewLayer(){
