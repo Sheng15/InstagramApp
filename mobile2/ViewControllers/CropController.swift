@@ -15,12 +15,7 @@ class CropController: UIViewController,UIScrollViewDelegate,UINavigationControll
     var imageView = UIImageView()
     var image : UIImage?
     
-    var contrastFilter: CIFilter!;
-    var brightnessFilter: CIFilter!;
-    var outputImage :CIImage?;
-    
-    
-    
+   
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBAction func cancleOnClick(_ sender: Any) {
@@ -32,16 +27,7 @@ class CropController: UIViewController,UIScrollViewDelegate,UINavigationControll
         performSegue(withIdentifier: "cropToPost", sender: nil)
     }
     
-    @IBAction func brightnessSlider(_ sender: UISlider) {
-        let beginImage = imageView.image
-        print(sender.value)
-        imageBrightness(imageView: imageView, sliderValue: CGFloat(sender.value),imageInput: beginImage!)
-    }
-   
-    @IBAction func contrastSlider(_ sender: UISlider) {
-        let beginImage = imageView.image
-        imageContrast(imageView: imageView, sliderValue: CGFloat(sender.value),imageInput: beginImage!)
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,34 +58,11 @@ class CropController: UIViewController,UIScrollViewDelegate,UINavigationControll
         scrollView.zoomScale = minScale
         
         centerScrollViewContents()
-        
-        brightnessFilter = CIFilter(name: "CIColorControls")
-        contrastFilter = CIFilter(name: "CIColorControls")
+
         
     }
     
-    func imageBrightness(imageView : UIImageView , sliderValue : CGFloat, imageInput: UIImage){
-        let beginImage = CIImage(image: imageInput)
-        brightnessFilter.setValue(beginImage, forKey:kCIInputImageKey)
-        brightnessFilter.setValue(sliderValue, forKey: kCIInputBrightnessKey)
-        if let ciimage = brightnessFilter.outputImage {
-            outputImage = ciimage
-            self.imageView.image = UIImage(ciImage: outputImage!)
-        }
-        print("brightness")
-    }
-    
-    func imageContrast(imageView : UIImageView , sliderValue : CGFloat, imageInput: UIImage){
-        let beginImage = CIImage(image: imageInput)
-        contrastFilter.setValue(beginImage, forKey: kCIInputImageKey)
-        contrastFilter.setValue(sliderValue, forKey: kCIInputContrastKey)
-        if let ciimage = contrastFilter.outputImage {
-            outputImage = ciimage
-            self.imageView.image = UIImage(ciImage: outputImage!)
-        }
-        print("contrast")
-    }
-    
+
     func centerScrollViewContents(){
         let boundsSize = scrollView.bounds.size
         var contentsFrame = imageView.frame

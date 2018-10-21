@@ -59,7 +59,7 @@ class EditController: UIViewController {
     func imageBrightness(imageView : UIImageView , sliderValue : CGFloat, imageInput: UIImage){
         let beginImage = CIImage(image: imageInput)
         brightnessFilter.setValue(beginImage, forKey:kCIInputImageKey)
-        let brightness: Int = Int((sliderValue/200) * 10000)
+        let brightness: Float = Float(sliderValue/200)
         print(brightness)
         brightnessFilter.setValue(brightness, forKey: kCIInputBrightnessKey)
         if let ciimage = brightnessFilter.outputImage {
@@ -72,7 +72,7 @@ class EditController: UIViewController {
     func imageContrast(imageView : UIImageView , sliderValue : CGFloat, imageInput: UIImage){
         let beginImage = CIImage(image: imageInput)
         contrastFilter.setValue(beginImage, forKey: kCIInputImageKey)
-        let contrast: Int = Int((sliderValue/200) * 10000)
+        let contrast: Float = Float((sliderValue/200) * 200)
         print(contrast)
         contrastFilter.setValue(contrast, forKey: kCIInputContrastKey)
         if let ciimage = contrastFilter.outputImage {
