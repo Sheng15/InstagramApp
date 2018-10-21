@@ -34,11 +34,12 @@ class FollowerViewController: UIViewController, UITableViewDelegate, UITableView
         ref.child("users").child(currentUserID!).child("followers").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
             
             if let following = snapshot.value as? [String : AnyObject] {
+                self.user.removeAll()
                 for (_, ouid) in following {
                     ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
                         
                         let users = snapshot.value as! [String: AnyObject]
-                        self.user.removeAll()
+                        
                         for (_, value) in users {
                             if let uid = value["uid"] as? String {
                                 if uid == ouid as? String {

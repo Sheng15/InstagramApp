@@ -1496,7 +1496,7 @@
         <image name="add" width="22" height="22"/>
         <image name="comment" width="43" height="41"/>
         <image name="discover" width="25" height="25"/>
-        <image name="insfake" width="2130" height="840"/>
+        <image name="insfake" width="1065" height="420"/>
         <image name="like" width="46" height="41"/>
         <image name="placeholder-photo" width="840" height="600"/>
         <image name="placeholderImg" width="225" height="225"/>
