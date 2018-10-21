@@ -103,6 +103,7 @@ class ImagePickController: UIViewController{
     
     @objc func chooseAlbum(){
         print ("chooseAlnum")
+        self.collectionView?.reloadData()
     }
     
     @objc func chooseCamera(){
