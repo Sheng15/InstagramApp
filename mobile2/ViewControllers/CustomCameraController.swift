@@ -23,7 +23,7 @@ class CustomCameraController: UIViewController {
     var image :UIImage?
     
     var flashMode: AVCaptureDevice.FlashMode = .on
-    var settings = AVCapturePhotoSettings()
+    var settings : AVCapturePhotoSettings!
     
     enum CurrentFlashMode {
         case off
@@ -32,6 +32,8 @@ class CustomCameraController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        settings = AVCapturePhotoSettings()
         
         setupCaptureSession()
         setupDevice()
