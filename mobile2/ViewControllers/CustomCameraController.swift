@@ -23,6 +23,7 @@ class CustomCameraController: UIViewController {
     var image :UIImage?
     
     var flashMode: AVCaptureDevice.FlashMode = .on
+    var settings = AVCapturePhotoSettings()
     
     enum CurrentFlashMode {
         case off
@@ -92,7 +93,6 @@ class CustomCameraController: UIViewController {
     
 
     @IBAction func cameraButtonOnClick(_ sender: UIButton) {
-        let settings = AVCapturePhotoSettings()
         photoOutput?.capturePhoto(with: settings, delegate: self)
         //performSegue(withIdentifier: "cameraToFilter", sender: nil)
     }
@@ -112,7 +112,6 @@ class CustomCameraController: UIViewController {
     }
     
     @IBAction func flashButtonOnClick(_ sender: UIButton) {
-        let settings = AVCapturePhotoSettings()
         if self.currentCamera.isFlashAvailable {
             
             if flashMode == .on {
@@ -122,7 +121,6 @@ class CustomCameraController: UIViewController {
                 settings.flashMode = .on
                 flashMode = .on
             }
-            photoOutput.capturePhoto(with: settings, delegate: self)
         }
         
     }
