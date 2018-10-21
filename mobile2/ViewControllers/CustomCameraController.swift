@@ -47,7 +47,7 @@ class CustomCameraController: UIViewController {
             }
         }
         
-        currentCamera = backCamera
+        currentCamera = AVCaptureDevice.default(.builtInDualCamera,for: .video, position: .back)
     }
     
     func setupInputOutput(){
