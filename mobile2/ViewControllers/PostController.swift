@@ -1,24 +1,33 @@
+
+
 //
-//  CameraViewController.swift
+//  PostController.swift
 //  mobile2
 //
 //  Created by LudwiG on 2018/9/30.
 //  Copyright © 2018年 LudwiG. All rights reserved.
 //
-
 import UIKit
 import Firebase
 import ProgressHUD
 
-class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+class PostController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     @IBOutlet weak var ImageData: UIImageView!
-    @IBOutlet weak var rmBT: UIBarButtonItem!
     @IBOutlet weak var TextData: UITextView!
     @IBOutlet weak var ShareBT: UIButton!
+    
     var SelectedImage: UIImage?
     var currentUserName: String?
-
+    
+    @IBAction func cancleOnClick(_ sender: UIButton) {
+        print("you cancle")
+        performSegueToReturnBack()
+        print("you cancle")
+        
+    }
+    
+    
     
     func tony(){
         if Auth.auth().currentUser?.uid != nil{
@@ -70,6 +79,7 @@ class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerC
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handlePhoto))
         ImageData.addGestureRecognizer(tapGesture)
         ImageData.isUserInteractionEnabled = true
+        ImageData.image = SelectedImage
         ShareBT.isUserInteractionEnabled = false
         tony()
     }
@@ -79,20 +89,13 @@ class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerC
         handlePost()
     }
     
-    @IBAction func removeBT(_ sender: Any) {
-        self.TextData.text = ""
-        self.ImageData.image = UIImage(named: "icon0.png")
-        self.SelectedImage = nil
-        handlePost()
-    }
+
     func handlePost() {
         if SelectedImage != nil {
             self.ShareBT.isEnabled = true
-            self.rmBT.isEnabled = true
             self.ShareBT.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         } else {
             self.ShareBT.isEnabled = false
-            self.rmBT.isEnabled = false
             self.ShareBT.backgroundColor = .lightGray
         }
     }
@@ -110,6 +113,7 @@ class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerC
         }
     }
     
+
     @IBAction func PostBT(_ sender: Any) {
         
         view.endEditing(true)
@@ -132,9 +136,7 @@ class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerC
                     self.present(avt!, animated: true, completion: nil)
                 }
             })
-        } else {
-            ProgressHUD.showError("Please choose an Image!")
-        }
+        } 
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -160,14 +162,15 @@ class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerC
         //            }
         //
         //        })
-        
+        //        let timestamp = Int(Date().timeIntervalSince1970))
         newPostReferrence.setValue([
             "photoUrl": photoUrl,
             "text": TextData.text!,
             "postID" : newPostID!,
             "userID" : uid!,
             "likes" : 0,
-            "author": self.currentUserName!
+            "author": self.currentUserName!,
+            "postedDate" : Int(Date().timeIntervalSince1970)
             ], withCompletionBlock: {
                 (error, ref) in
                 if error != nil{
@@ -186,7 +189,7 @@ class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerC
         actionSheet.addAction(UIAlertAction(title: "CAMERA", style: .default, handler: { alertAction in
             self.showImagePickerForSourceType(.camera)
         }))
-    
+        
         actionSheet.addAction(UIAlertAction(title: "PHOTO LIBRARY", style: .default, handler: { alertAction in
             self.showImagePickerForSourceType(.photoLibrary)
         }))
@@ -225,5 +228,17 @@ class CameraViewController: UIViewController, UITextViewDelegate, UIImagePickerC
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
+    
+}
 
+extension PostController{
+    
+    func performSegueToReturnBack(){
+        if let nav = self.navigationController{
+            nav.popViewController(animated: true)
+        }else{
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+    }
 }

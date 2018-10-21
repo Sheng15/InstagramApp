@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import ProgressHUD
 
-class AvatarViewController: UIViewController {
+class AvatarViewController: UIViewController, UICollectionViewDataSource {
     
     
     @IBOutlet weak var profileImage: UIImageView!
@@ -18,13 +18,28 @@ class AvatarViewController: UIViewController {
     @IBOutlet weak var posts: UILabel!
     @IBOutlet weak var following: UILabel!
     @IBOutlet weak var follower: UILabel!
+    @IBOutlet weak var collection: UICollectionView!
     
+    
+    @IBOutlet weak var showfollowing: UIStackView!
+    @IBOutlet weak var showfollower: UIStackView!
     var postList: Array<Any>!
+    var post = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collection.dataSource = self
         getData()
-
+        getMyPost()
+        
+        let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(self.Showfollowing))
+        showfollowing.addGestureRecognizer(tapGesture1)
+        showfollowing.isUserInteractionEnabled = true
+        
+        let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(self.Showfollower))
+        showfollower.addGestureRecognizer(tapGesture2)
+        showfollower.isUserInteractionEnabled = true
+        
         profileImage.layer.cornerRadius = 58
         profileImage.clipsToBounds = true
         ProgressHUD.show("Loading...")
@@ -35,12 +50,23 @@ class AvatarViewController: UIViewController {
         ProgressHUD.showSuccess()
     }
     
+    @objc func Showfollowing(){
+        let avt = self.storyboard?.instantiateViewController(withIdentifier: "fg")
+        self.present(avt!, animated: true, completion: nil)
+    }
+    
+    @objc func Showfollower(){
+        let avt = self.storyboard?.instantiateViewController(withIdentifier: "fr")
+        self.present(avt!, animated: true, completion: nil)
+    }
     func getData() {
         self.postList = []
         let currentUserID = Auth.auth().currentUser?.uid
         let ref = Database.database().reference()
         ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-            
+            if snapshot.childrenCount == 0 {
+                return
+            }
             let users = snapshot.value as! [String: AnyObject]
             for (_, value) in users {
                 if let uid = value["uid"] as? String {
@@ -74,7 +100,7 @@ class AvatarViewController: UIViewController {
         ref2.observe(.value, with: { (snapshot: DataSnapshot!) in
             print(snapshot.childrenCount)
             self.following.text = String(snapshot.childrenCount)
-
+            
         })
         ref3.observe(.value, with: { (snapshot: DataSnapshot!) in
             print(snapshot.childrenCount)
@@ -105,6 +131,48 @@ class AvatarViewController: UIViewController {
         self.present(ssb!, animated: true, completion: nil)
     }
     
+    func getMyPost() {
+        
+        let ref = Database.database().reference()
+        
+        let currentUserID = Auth.auth().currentUser?.uid
+        
+        ref.child("posts").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+            
+            if snapshot.childrenCount == 0 {
+                print(snapshot.childrenCount)
+                return
+            }
+            
+            let posts = snapshot.value as! [String: AnyObject]
+            self.post.removeAll()
+            for (_, value) in posts {
+                if let uid = value["userID"] as? String {
+                    if uid == currentUserID {
+                        let mp = Post()
+                        if let url = value["photoUrl"] as? String {
+                            mp.photoUrl = url
+                            self.post.append(mp)
+                        }
+                    }
+                }
+            }
+            self.collection.reloadData()
+        })
+        ref.removeAllObservers()
+        ProgressHUD.showSuccess()
+    }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return post.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Postcell", for: indexPath) as! PostCell
+        cell.PostView.getProfileImage(from: self.post[indexPath.row].photoUrl!)
+        
+        return cell
+    }
     
 }
+

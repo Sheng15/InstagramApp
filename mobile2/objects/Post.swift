@@ -16,6 +16,7 @@ class Post: NSObject {
     var text: String!
     var userID: String!
     var postID: String!
+    var postedTime: Int!
     
     
     
