@@ -21,12 +21,12 @@ class CustomCameraController: UIViewController {
     var cameraPreviewLayer : AVCaptureVideoPreviewLayer!
     var usingFrontCamera = false
     var image :UIImage?
-    var currentFlashMode = CurrentFlashMode.on
+    
+    var flashMode: AVCaptureDevice.FlashMode = .on
     
     enum CurrentFlashMode {
         case off
         case on
-        case auto
     }
     
     override func viewDidLoad() {
@@ -106,26 +106,27 @@ class CustomCameraController: UIViewController {
     @IBAction func cancelButtonOnClock(_ sender: UIButton) {
         performSegueToReturnBack()
     }
-    @IBAction func flashButtonOnClick(_ sender: UIButton) {
-        let currentSettings = getSettings(camera: currentCamera, flashMode: currentFlashMode)
-        photoOutput.capturePhoto(with: currentSettings, delegate: self)
-    }
+
 
     @IBAction func gridButtonOnClick(_ sender: UIButton) {
     }
     
-    func getSettings(camera: AVCaptureDevice, flashMode: CurrentFlashMode) -> AVCapturePhotoSettings {
+    @IBAction func flashButtonOnClick(_ sender: UIButton) {
         let settings = AVCapturePhotoSettings()
-        
-        if camera.hasFlash && camera.isFlashAvailable{
-            switch flashMode {
-            case .auto: settings.flashMode = .auto
-            case .on: settings.flashMode = .off
-            default: settings.flashMode = .on
+        if self.currentCamera.isFlashAvailable {
+            
+            if flashMode == .on {
+                settings.flashMode = .off
+                flashMode = .off
+            } else {
+                settings.flashMode = .on
+                flashMode = .on
             }
+            photoOutput.capturePhoto(with: settings, delegate: self)
         }
-        return settings
+        
     }
+    
     
 }
 

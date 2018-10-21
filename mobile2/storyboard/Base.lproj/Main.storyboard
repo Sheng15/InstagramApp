@@ -814,13 +814,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmy-3C-akR">
-                                <rect key="frame" x="317" y="297" width="39" height="30"/>
+                                <rect key="frame" x="318" y="297" width="37" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Torch">
+                                <state key="normal" title="Flash">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="torchButtonOnClick:" destination="tib-wa-lm2" eventType="touchUpInside" id="VPy-Si-cTg"/>
+                                    <action selector="flashButtonOnClick:" destination="tib-wa-lm2" eventType="touchUpInside" id="bTP-LU-TU1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDM-ru-Mzu">
