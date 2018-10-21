@@ -23,6 +23,7 @@
 		CE6DE7CF2177B0D1000911A9 /* CustomCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DE7CE2177B0D1000911A9 /* CustomCameraController.swift */; };
 		CEC0668121796E48004A12C1 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC0668021796E48004A12C1 /* PostController.swift */; };
 		CEC06683217980CF004A12C1 /* CropController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC06682217980CF004A12C1 /* CropController.swift */; };
+		CEC066A5217C3048004A12C1 /* EditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC066A4217C3048004A12C1 /* EditController.swift */; };
 		DC0ECB962173239500C0AC8D /* DiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0ECB952173239500C0AC8D /* DiscoverCell.swift */; };
 		DC395094217472400064890E /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC395093217472400064890E /* DiscoverViewController.swift */; };
 		DC395096217472980064890E /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC395095217472980064890E /* NavigationViewController.swift */; };
@@ -80,6 +81,7 @@
 		CE6DE7CE2177B0D1000911A9 /* CustomCameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraController.swift; sourceTree = "<group>"; };
 		CEC0668021796E48004A12C1 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 		CEC06682217980CF004A12C1 /* CropController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropController.swift; sourceTree = "<group>"; };
+		CEC066A4217C3048004A12C1 /* EditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditController.swift; sourceTree = "<group>"; };
 		DC0ECB952173239500C0AC8D /* DiscoverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCell.swift; sourceTree = "<group>"; };
 		DC395093217472400064890E /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		DC395095217472980064890E /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				CE6DE7CE2177B0D1000911A9 /* CustomCameraController.swift */,
 				CEC0668021796E48004A12C1 /* PostController.swift */,
 				CEC06682217980CF004A12C1 /* CropController.swift */,
+				CEC066A4217C3048004A12C1 /* EditController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				DC395096217472980064890E /* NavigationViewController.swift in Sources */,
 				8896B13B2166647900E6C3B1 /* PostTableViewCell.swift in Sources */,
 				CE6DE7C2217580E9000911A9 /* AlbumCollectionViewCell.swift in Sources */,
+				CEC066A5217C3048004A12C1 /* EditController.swift in Sources */,
 				DC0ECB962173239500C0AC8D /* DiscoverCell.swift in Sources */,
 				88759D9D2170E6D1007FBF7B /* Post.swift in Sources */,
 				F828DD5121523398009F2227 /* ViewController.swift in Sources */,

@@ -107,7 +107,7 @@ class FilterController: UIViewController {
         let editButton = UIButton()
         let editButtonRect = CGRect(x: screenWidth - 140, y: screenHeight - 50, width: 100, height: 25)
         editButton.frame = editButtonRect
-        editButton.setTitle("Edit", for: .normal)
+        editButton.setTitle("Crop", for: .normal)
         editButton.setTitleColor(.black, for: .normal)
         editButton.backgroundColor = .white
         editButton.addTarget(self, action: #selector(editOnClick(_:)), for: .touchUpInside)
@@ -121,7 +121,7 @@ class FilterController: UIViewController {
     }
     
     @objc func editOnClick(_ sender:Any){
-        performSegue(withIdentifier: "filterToEdit", sender: nil)
+        performSegue(withIdentifier: "filterToCrop", sender: nil)
         
     }
     

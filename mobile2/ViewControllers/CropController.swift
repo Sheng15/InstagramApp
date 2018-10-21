@@ -29,7 +29,7 @@ class CropController: UIViewController,UIScrollViewDelegate,UINavigationControll
     }
     
     @IBAction func nextOnClick(_ sender: UIButton) {
-        performSegue(withIdentifier: "editToPost", sender: nil)
+        performSegue(withIdentifier: "cropToPost", sender: nil)
     }
     
     @IBAction func brightnessSlider(_ sender: UISlider) {
@@ -128,6 +128,9 @@ class CropController: UIViewController,UIScrollViewDelegate,UINavigationControll
             
             let image = UIGraphicsGetImageFromCurrentImageContext()
             vc.SelectedImage = image
+        }else if let vc = segue.destination as? EditController{
+            let image =  imageView.image!
+            vc.image = image
         }
     }
     
@@ -154,6 +157,9 @@ class CropController: UIViewController,UIScrollViewDelegate,UINavigationControll
         
         alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
         
+    }
+    @IBAction func editOnClick(_ sender: UIButton) {
+        performSegue(withIdentifier: "cropToEdit", sender: nil)
     }
     
 }
